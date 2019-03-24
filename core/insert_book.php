@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 session_start();
 if(isset($_SESSION['valid'])){
 	if($_SESSION['valid'] == true)
-		echo $_SESSION['login_user'];
+	//	echo $_SESSION['login_user'];
 }
 
 ?>
