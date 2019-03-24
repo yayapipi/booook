@@ -20,6 +20,54 @@
 
 <body>
 
+  <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "booook";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else{
+  //echo " Connected ";
+}
+
+
+session_start();
+
+?>
+
+<?php
+    $msg = '';
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+      // username and password sent from form 
+      
+      $myusername = mysqli_real_escape_string($conn,$_POST['username']);
+      $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
+      
+      $sql = "SELECT id FROM userdata WHERE username = '$myusername' and password = '$mypassword'";
+      $result = mysqli_query($conn,$sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      
+      $count = mysqli_num_rows($result);
+      
+      // If result matched $myusername and $mypassword, table row must be 1 row
+    
+      if($count == 1) {
+         $_SESSION['login_user'] = $myusername;
+         $_SESSION['valid'] = true;
+         
+         echo $_SESSION['login_user'];
+         header('location: ../main/booklist.php');
+      }else {
+         $error = "Your Login Name or Password is invalid";
+      }
+   }
+?>
+
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth px-0">
@@ -29,15 +77,15 @@
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               
               <h4 style="text-align: center;">Log In</h4>
-              <form class="pt-3">
+              <form class="pt-3" action="login.php" method="post">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username" name="username">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="password">
                 </div>
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a>
+                  <input type="submit" value="SIGN IN" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
@@ -49,7 +97,7 @@
                 </div>
                 
                 <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <br><a href="register.html" class="text-primary">Register</a>
+                  Don't have an account? <br><a href="register.php" class="text-primary">Register</a>
                 </div>
               </form>
             </div>

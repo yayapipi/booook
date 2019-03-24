@@ -48,6 +48,9 @@ if ($conn->connect_error) {
 
   echo $sql_createTable;
 $conn->close();
+
+header('location: ../pages/system/login.php');
+
 ?>
 
 

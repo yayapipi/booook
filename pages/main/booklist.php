@@ -109,14 +109,18 @@
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="../../images/faces/face5.jpg" alt="profile"/>
-              <span class="nav-profile-name">Yayapipi Goh</span>
+              <span class="nav-profile-name">
+                <?php
+                echo $_SESSION['login_user'];
+                ?>
+              </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
                 <i class="mdi mdi-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="../../core/logout.php">
                 <i class="mdi mdi-logout text-primary"></i>
                 Logout
               </a>
@@ -136,31 +140,31 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../../index.html">
+            <a class="nav-link" href="booklist.php">
               <i class="mdi mdi-book-open menu-icon"></i>
               <span class="menu-title">Booklist</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link"  href="../forms/bookinsert.php"  >
               <i class="mdi mdi-book-plus menu-icon"></i>
               <span class="menu-title">Add New Book</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/charts/chartjs.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-chart-pie menu-icon"></i>
               <span class="menu-title">Data Analysis</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/tables/basic-table.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-border-color menu-icon"></i>
               <span class="menu-title">Suggestion</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/icons/mdi.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-information menu-icon"></i>
               <span class="menu-title">Credit</span>
             </a>

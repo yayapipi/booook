@@ -41,6 +41,7 @@ if(isset($_SESSION['valid'])){
            .")";
   $conn->query($sql_insert);
   echo $sql_insert;
+  header('location: ../pages/forms/bookinsert.php');
 } 
 }
 

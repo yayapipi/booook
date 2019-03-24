@@ -41,7 +41,7 @@ if(isset($_SESSION['valid'])){
 
 ?>
 
- <div class="container-scroller">
+  <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex justify-content-center">
@@ -71,14 +71,18 @@ if(isset($_SESSION['valid'])){
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="../../images/faces/face5.jpg" alt="profile"/>
-              <span class="nav-profile-name">Yayapipi Goh</span>
+              <span class="nav-profile-name">
+                <?php
+                echo $_SESSION['login_user'];
+                ?>
+              </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
                 <i class="mdi mdi-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="../../core/logout.php">
                 <i class="mdi mdi-logout text-primary"></i>
                 Logout
               </a>
@@ -98,38 +102,37 @@ if(isset($_SESSION['valid'])){
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="../../index.html">
+            <a class="nav-link" href="../main/booklist.php">
               <i class="mdi mdi-book-open menu-icon"></i>
               <span class="menu-title">Booklist</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link"  href="bookinsert.php"  >
               <i class="mdi mdi-book-plus menu-icon"></i>
               <span class="menu-title">Add New Book</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/charts/chartjs.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-chart-pie menu-icon"></i>
               <span class="menu-title">Data Analysis</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/tables/basic-table.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-border-color menu-icon"></i>
               <span class="menu-title">Suggestion</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/icons/mdi.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-information menu-icon"></i>
               <span class="menu-title">Credit</span>
             </a>
           </li>
         </ul>
       </nav>
-
 
       <!-- partial -->
       <div class="main-panel">        
@@ -143,10 +146,10 @@ if(isset($_SESSION['valid'])){
                   <p class="card-description">
                   </p>
 
-                  <form class="forms-sample" action="/insetion.php" method="post">
+                  <form class="forms-sample" action="../../core/insetion.php" method="post">
                     <div class="form-group">
                       <label for="exampleInputName1">Book Name</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Enter Book Name" >
+                      <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Enter Book Name" autofocus>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputName1">Description</label>
@@ -160,10 +163,10 @@ if(isset($_SESSION['valid'])){
                     <div class="form-group">
                       <label for="exampleSelectGender">Status</label>
                         <select class="form-control" id="exampleSelectGender" name="status">
-                          <option>unread</option>
-                          <option>readed</option>
-                          <option>reading</option>
-                          <option>wishlist</option>
+                          <option value="0">unread</option>
+                          <option value="1">readed</option>
+                          <option value="2">reading</option>
+                          <option value="3">wishlist</option>
                         </select>
                       </div>
 
@@ -180,7 +183,7 @@ if(isset($_SESSION['valid'])){
 
                     <div class="form-group">
                       <label for="exampleTextarea1">Reflection</label>
-                      <textarea class="form-control" id="exampleTextarea1" rows="15"></textarea>
+                      <textarea class="form-control" id="exampleTextarea1" rows="15" name="idea"></textarea>
                     </div>
 
 
@@ -207,7 +210,7 @@ if(isset($_SESSION['valid'])){
 
                     <div class="form-group">
                       <label for="exampleInputName1">ISBN</label>
-                      <input type="number" class="form-control" id="exampleInputName1" name="isbn" placeholder="ISBN Code">
+                      <input type="number" class="form-control" id="exampleInputName1" name="isbn" placeholder="ISBN Code" value="0">
                     </div>
 
                     <div class="form-group">
@@ -217,7 +220,7 @@ if(isset($_SESSION['valid'])){
 
                     <div class="form-group">
                       <label for="exampleInputName1">Book Page</label>
-                      <input type="number" class="form-control" id="exampleInputName1" name="page" placeholder="Number Of Book Page Has">
+                      <input type="number" class="form-control" id="exampleInputName1" name="page" placeholder="Number Of Book Page Has" value="0">
                     </div>
 
                     <div class="form-group">
@@ -227,7 +230,7 @@ if(isset($_SESSION['valid'])){
 
                     <div class="form-group">
                       <label for="exampleInputName1">Publish Date</label>
-                      <input type="date" class="form-control" id="exampleInputName1" name="publish_date" placeholder="Publish Date Of This Book">
+                      <input type="date" class="form-control" id="exampleInputName1" name="publish_date" placeholder="Publish Date Of This Book" value="1998-01-01">
                     </div>
 
                      <div class="form-group">
@@ -237,22 +240,22 @@ if(isset($_SESSION['valid'])){
 
                      <div class="form-group">
                       <label for="exampleInputName1">Bookmark</label>
-                      <input type="number" class="form-control" id="exampleInputName1" name="bookmarks" placeholder="Bookmark for your lastest page">
+                      <input type="number" class="form-control" id="exampleInputName1" name="bookmarks" placeholder="Bookmark for your lastest page" value="0">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputName1">Reading Hour</label>
-                      <input type="number" class="form-control" id="exampleInputName1" name="read_time" placeholder="How long did you read the book ">
+                      <input type="number" class="form-control" id="exampleInputName1" name="read_time" placeholder="How long did you read the book " value="0">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputName1">Reading Page</label>
-                      <input type="number" class="form-control" id="exampleInputName1" name="read_page" placeholder="How Many Page Did You Read">
+                      <input type="number" class="form-control" id="exampleInputName1" name="read_page" placeholder="How Many Page Did You Read" value="0">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputName1">Finish Date</label>
-                      <input type="date" class="form-control" id="exampleInputName1" name="finish_date" placeholder="When you finish reading this book">
+                      <input type="date" class="form-control" id="exampleInputName1" name="finish_date" placeholder="When you finish reading this book" value="1998-01-01">
                     </div>
 
 
@@ -264,7 +267,6 @@ if(isset($_SESSION['valid'])){
                   <br>
 
                     <button type="submit" class="btn btn-primary mr-2">Insert</button>
-              
                   </form>
                 </div>
               </div>
