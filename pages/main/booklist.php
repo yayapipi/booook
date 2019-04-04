@@ -269,10 +269,7 @@ return "Hi";
 
 ?>
 
-          <!-- Book-Model-Box -->
-
-
-        <button id="myBtn">Open Modal</button>
+        <!-- Book-Model-Box -->
         <!-- The Modal -->
         <div id="myModal" class="book-modal">
 
