@@ -215,7 +215,7 @@
 						  $count = 1;
 						  if(isset($i)){
 						    while($count<=$i){
-						      echo "<tr class='clickable-row' data-href='".$count."'>  <td>".
+						      echo "<tr class='clickable-row' data-href='".$count."' >  <td>".
 						           $count . "</td><td>" .
 						           $name[$count-1] . "</td><td>" .
 						           $description[$count-1] ."</td><td>" .
@@ -269,7 +269,10 @@ return "Hi";
 
 ?>
 
-        <!-- Book-Model-Box -->
+          <!-- Book-Model-Box -->
+
+
+        <button id="myBtn" style="display: none;">Open Modal</button>
         <!-- The Modal -->
         <div id="myModal" class="book-modal">
 
