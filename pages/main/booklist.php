@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../../css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../../images/favicon.png" />
+  <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
@@ -214,13 +215,13 @@
 						  $count = 1;
 						  if(isset($i)){
 						    while($count<=$i){
-						      echo "<tr><td>".
+						      echo "<tr class='clickable-row' data-href='".$count."'>  <td>".
 						           $count . "</td><td>" .
 						           $name[$count-1] . "</td><td>" .
 						           $description[$count-1] ."</td><td>" .
 						           $type[$count-1] . "</td><td>" .
 						           $status[$count-1] . "</td><td>" .
-						           '<i class="mdi mdi-border-color menu-icon" style="color: #71c016;"></i>' .
+						           '<a class="btn btn-default" href="../forms/bookinsert.php"><i class="mdi mdi-border-color menu-icon" style="color: #71c016;"></i></a>' .
 						           "</td></tr>";
 						      $count++;
 						    }
@@ -260,7 +261,13 @@
     <!-- page-body-wrapper ends -->
   </div>
 
+<?php 
 
+if(isset($_GET['book_uid'])){
+return "Hi";
+}
+
+?>
 
           <!-- Book-Model-Box -->
 
@@ -273,39 +280,92 @@
           <div class="book-modal-content">
             <div class="modal-body">
                   <span class="close">&times;</span>
-           <input type="text" >
-              <p>Some text in the Modal Body</p>
-              <p>Some other text...</p>
-              <p>Some text in the Modal Body</p>
-              <p>Some other text...</p>
-              <p>Some text in1 the Modal Body</p>
-              <p>Some other text...</p>
 
-              <textarea></textarea>
-              <p>Some text in the Modal Body</p>
-              <p>Some other text...</p>
-              <p>Some text in the Modal Body</p>
-              <p>Some other text...</p>
-              <p>Some text in1 the Modal Body</p>
-              <p>Some other text...</p>
 
-              <textarea></textarea>
-              <p>Some text in the Modal Body</p>
-              <p>Some other text...</p>
-              <p>Some text in the Modal Body</p>
-              <p>Some other text...</p>
-              <p>Some text in1 the Modal Body</p>
-              <p>Some other text...</p>
+                     <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4">
+                <img style="border-radius: 16px; border: 1px solid #888;" height="95%" width="95%" alt="Bootstrap Image Preview" src="https://bci.kinokuniya.com/jsp/images/book-img/97895/97895713/9789571341712.JPG" class="rounded" />
+                
+              </div>
+              <div class="col-md-8">
+                <br>
 
-              <textarea></textarea>
-              <p>Some text in the Modal Body</p>
-              <p>Some other text...</p>
-              <p>Some text in the Modal Body</p>
-              <p>Some other text...</p>
-              <p>Some text in1 the Modal Body</p>
-              <p>Some other text...</p>
+                <h3><b id='book_name'>牧羊少年的奇幻歷險記</b></h3>
+                <hr >
+                <div class="row">
+                 <div class="col-md-12">
+                  <p id='book_description'>故事敘述一位西班牙安達魯西亞地區的牧羊男孩追尋夢想，前往金字塔的歷程。男孩因渴望認識世界、四處旅行而中斷修道院的學習生涯，開始牧羊的生活。牧羊少年因緣際會遇見了「塞勒姆國王」、非洲的水晶商人、前往綠洲的駱駝商隊…
+                  </p>
+                 </div>
+                 </div>
+                 <hr >
+                <div class="row">
+                  <div class="col-md-6">
+                    <b>Isbn:</b> <b id='book_isbn'></b>
+                    <br /> <b>Type:</b>
+                    <br /> <b>Page:</b>
+                    <br /> <b>Publish Date:</b>
+                    <br /> <b>Publisher:</b>
+                  </div>
+                  <div class="col-md-6">
+                    <b>Status:</b>
+                    <br /> <b>Read Time:</b>
+                    <br /> <b>Read Page:</b>
+                    <br /> <b>Finish Date:</b>
+                    <br /> <b>Rating:</b> 
+                    <i class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-12">
 
-              <textarea></textarea>
+
+                <div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <b style="color: black;">Review</b>
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <b style="color: black;">Remark</b>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+              </div>
+            </div>
+          </div>
             </div>
 
           </div>
@@ -324,6 +384,33 @@
         var span = document.getElementsByClassName("close")[0];
 
         // When the user clicks the button, open the modal 
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                 $.ajax(
+                  {
+
+                        type:'GET',
+                        url:'bookcatch.php',
+                        data:"book_uid="+$(this).data("href"), 
+                        success: function(data){
+                          //alert(data);
+                          var resultData = data;
+                          resultData = resultData.substring(1,resultData.length-1);
+                          var result = resultData.split(',');
+                          $("#book_name").html(result[0]);
+                          $("#book_description").html(result[4]);
+                          $("#book_isbn").html(result[2]);
+                        }
+
+                  });
+                 //window.location.reload();
+                //$.ajax({ url: 'booklist.php?argument=value&foo=bar' });
+                 modal.style.display = "block";
+            });
+        });
+
+      
+
         btn.onclick = function() {
           modal.style.display = "block";
         }
