@@ -26,7 +26,7 @@ if ($conn->connect_error) {
   echo $sql1;
 
   $sql_createTable = "CREATE TABLE Booklist_".$_POST['username'].
-                      "(id INT(1000) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                      "(id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                         isbn INT(100),
                         name VARCHAR(255) NOT NULL,
                         authors VARCHAR(255),

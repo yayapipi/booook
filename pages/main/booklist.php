@@ -189,22 +189,22 @@
                     <table class="table table-striped table-hover">
                       <thead>
                         <tr>
-                          <th>
+                          <th style="table-layout:fixed; width:25px;">
                             No.
                           </th>
-                          <th>
+                          <th style="table-layout:fixed; width:200px;">
                             Book Name
                           </th>
-                          <th>
+                          <th >
                             Description
                           </th>
-                          <th>
+                          <th style="table-layout:fixed; width:100px;">
                             Type
                           </th>
-                          <th>
+                          <th style="table-layout:fixed; width:100px;">
                             Status
                           </th>
-                          <th>
+                          <th style="table-layout:fixed; width:25px;">
                             Edit
                           </th>
                         </tr>
@@ -285,17 +285,17 @@ return "Hi";
                      <div class="container-fluid">
             <div class="row">
               <div class="col-md-4">
-                <img style="border-radius: 16px; border: 1px solid #888;" height="95%" width="95%" alt="Bootstrap Image Preview" src="https://bci.kinokuniya.com/jsp/images/book-img/97895/97895713/9789571341712.JPG" class="rounded" />
+                <img id="book_image" style="border-radius: 16px; border: 1px solid #888;" height="95%" width="95%" alt="Bootstrap Image Preview" src="https://bci.kinokuniya.com/jsp/images/book-img/97895/97895713/9789571341712.JPG" class="rounded" />
                 
               </div>
               <div class="col-md-8">
                 <br>
 
-                <h3><b id='book_name'>牧羊少年的奇幻歷險記</b></h3>
+                <h3><b id='book_name'>No Book Title</b></h3>
                 <hr >
                 <div class="row">
                  <div class="col-md-12">
-                  <p id='book_description'>故事敘述一位西班牙安達魯西亞地區的牧羊男孩追尋夢想，前往金字塔的歷程。男孩因渴望認識世界、四處旅行而中斷修道院的學習生涯，開始牧羊的生活。牧羊少年因緣際會遇見了「塞勒姆國王」、非洲的水晶商人、前往綠洲的駱駝商隊…
+                  <p id='book_description'>There Are Not Book Descripsion Here ...
                   </p>
                  </div>
                  </div>
@@ -303,22 +303,22 @@ return "Hi";
                 <div class="row">
                   <div class="col-md-6">
                     <b>Isbn:</b> <b id='book_isbn'></b>
-                    <br /> <b>Type:</b>
-                    <br /> <b>Page:</b>
-                    <br /> <b>Publish Date:</b>
-                    <br /> <b>Publisher:</b>
+                    <br /> <b>Type:</b> <b id='book_type'></b>
+                    <br /> <b>Page:</b> <b id='book_page'></b>
+                    <br /> <b>Publish Date:</b> <b id='book_publishdate'></b>
+                    <br /> <b>Publisher:</b> <b id='book_publisher'></b>
                   </div>
                   <div class="col-md-6">
-                    <b>Status:</b>
-                    <br /> <b>Read Time:</b>
-                    <br /> <b>Read Page:</b>
-                    <br /> <b>Finish Date:</b>
+                    <b>Status:</b> <b id='book_status'></b>
+                    <br /> <b>Read Time:</b> <b id='book_readtime'></b>
+                    <br /> <b>Read Page:</b> <b id='book_readpage'></b>
+                    <br /> <b>Finish Date:</b> <b id='book_finishdate'></b>
                     <br /> <b>Rating:</b> 
-                    <i class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
-                    <i class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
-                    <i class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
-                    <i class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
-                    <i class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i id="book_rate1" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i id="book_rate2" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i id="book_rate3" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i id="book_rate4" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i id="book_rate5" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
                   </div>
                 </div>
                 <hr>
@@ -341,8 +341,9 @@ return "Hi";
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-        
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        <p id="book_review">
+        No Review Currently.
+       </p>
       </div>
     </div>
   </div>
@@ -356,7 +357,9 @@ return "Hi";
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        <p id="book_remark">
+        No Remark Currently.
+        </p>
       </div>
     </div>
   </div>
@@ -397,9 +400,22 @@ return "Hi";
                           var resultData = data;
                           resultData = resultData.substring(1,resultData.length-1);
                           var result = resultData.split(',');
-                          $("#book_name").html(result[0]);
-                          $("#book_description").html(result[4]);
-                          $("#book_isbn").html(result[2]);
+                          $("#book_isbn").html(result[0]);
+                          $("#book_name").html(result[1]);
+                          $("#book_author").html(result[2]);
+                          $("#book_page").html(result[4]);
+                          $("#book_description").html(result[5]);
+                          $("#book_publishdate").html(result[6]);
+                          $("#book_publisher").html(result[7]);
+                          $("#book_remark").html(result[8]);
+                          $("#book_review").html(result[9]);
+                          $("#book_status").html(result[10]);
+                          $("#book_rate").html(result[11]);
+                          $("#book_bookmark").html(result[12]);
+                          $("#book_readtime").html(result[13]);
+                          $("#book_readpage").html(result[14]);
+                          $("#book_finishdate").html(result[15]);
+                          $("#book_image").attr('src',"../../images/BookImages/"+result[17]+"/"+result[16]);
                         }
 
                   });

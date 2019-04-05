@@ -42,6 +42,7 @@
 		        $readtime[$i] = $row["readtime"];
 		        $readpage[$i] = $row["readpage"];
 		        $finishdate[$i] = $row["finishdate"];
+		        $bookimage[$i] = $row["bookimage"];
 
 		        $i++;
 		      }
@@ -56,7 +57,8 @@
 		}
 if(isset($_GET['book_uid'])){
 	$uid = $_GET['book_uid']-1;
-	echo $name[$uid] . ',' .
+	echo $isbn[$uid] . ',' .
+		 $name[$uid] . ',' .
 		 $author[$uid] . ',' .
 		 $type[$uid] . ',' .
 		 $page[$uid] . ',' .
@@ -64,7 +66,15 @@ if(isset($_GET['book_uid'])){
 		 $publish_date[$uid] . ',' .
 		 $publisher[$uid] . ',' .
 		 $remark[$uid] . ',' .
-		 $review[$uid] ;
+		 $review[$uid] . ',' .
+		 $status[$uid] . ',' .
+		 $rate[$uid] . ',' .
+		 $bookmark[$uid] . ',' .
+		 $readtime[$uid] . ',' .
+		 $readpage[$uid] . ',' .
+		 $finishdate[$uid] . ',' .
+		 $bookimage[$uid] . ',' .
+		 $_SESSION['login_user'] .',';
 }
 
 
