@@ -26,12 +26,12 @@ if ($conn->connect_error) {
   echo $sql1;
 
   $sql_createTable = "CREATE TABLE Booklist_".$_POST['username'].
-                      "(id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                        isbn INT(15),
+                      "(id INT(1000) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                        isbn INT(100),
                         name VARCHAR(255) NOT NULL,
                         authors VARCHAR(255),
                         type VARCHAR(255),
-                        page INT(10),
+                        page INT(100),
                         description VARCHAR(1000),
                         publish_date DATE,
                         publisher VARCHAR(255),
@@ -42,7 +42,8 @@ if ($conn->connect_error) {
                         bookmark INT(10),
                         readtime time,
                         readpage INT(10),
-                        finishdate Date
+                        finishdate Date,
+                        bookimage VARCHAR(255)
                       )";
   $conn->query($sql_createTable);
 

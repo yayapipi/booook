@@ -146,7 +146,7 @@ if(isset($_SESSION['valid'])){
                   <p class="card-description">
                   </p>
 
-                  <form class="forms-sample" action="../../core/insetion.php" method="post">
+                  <form id="forminsert" name="forminsert" class="forms-sample" action="../../core/insetion.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                       <label for="exampleInputName1">Book Name</label>
                       <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Enter Book Name" autofocus>
@@ -199,7 +199,7 @@ if(isset($_SESSION['valid'])){
 
                     <div class="form-group">
                       <label>Book Image Upload</label>
-                      <input type="file" name="img[]" class="file-upload-default">
+                      <input type="file" name="fileToUpload" id="fileToUpload" class="file-upload-default">
                       <div class="input-group col-xs-12">
                         <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                         <span class="input-group-append">
@@ -273,6 +273,9 @@ if(isset($_SESSION['valid'])){
             </div>
 
 
+
+
+
             
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
@@ -287,6 +290,9 @@ if(isset($_SESSION['valid'])){
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
+
+
+
   <!-- plugins:js -->
   <script src="../../vendors/base/vendor.bundle.base.js"></script>
   <!-- endinject -->
