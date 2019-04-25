@@ -19,7 +19,6 @@
 </head>
 
 <body>
-  
   <?php
 $servername = "localhost";
 $username = "root";
@@ -35,9 +34,47 @@ if ($conn->connect_error) {
 
 session_start();
 if(isset($_SESSION['valid'])){
-  if($_SESSION['valid'] == true)
+  if($_SESSION['valid'] == true){
     echo $_SESSION['login_user'];
+  }
 }
+
+if(isset($_SESSION['login_user'])){
+
+      $sql = "SELECT * FROM booklist_" .$_SESSION['login_user']  ;
+      $result = $conn->query($sql);
+
+      if($result){
+        if($result->num_rows >=0){
+          $i = 0;
+          while($row = $result->fetch_assoc()) {
+            $isbn[$i] = $row["isbn"];
+            $name[$i] = $row["name"];
+            $author[$i] = $row["authors"];
+            $type[$i] = $row["type"];
+            $page[$i] = $row["page"];
+            $description[$i] = $row["description"];
+            $publish_date[$i] = $row["publish_date"];
+            $publisher[$i] = $row["publisher"];
+            $remark[$i] = $row["remark"];
+            $review[$i] = $row["review"];
+            $status[$i] = $row["status"];
+            $rate[$i] = $row["rate"];
+            $bookmark[$i] = $row["bookmark"];
+            $readtime[$i] = $row["readtime"];
+            $readpage[$i] = $row["readpage"];
+            $finishdate[$i] = $row["finishdate"];
+            $bookimage[$i] = $row["bookimage"];
+
+            $i++;
+          }
+        }else{
+         $i =0;
+        }
+      }else{
+       $i=-1;
+      }
+    }
 
 ?>
 
@@ -165,53 +202,59 @@ if(isset($_SESSION['valid'])){
               <div class="card">
                 <div class="card-body">
 
-                  <form id="forminsert" name="forminsert" class="forms-sample" action="../../core/insetion.php" method="post" enctype="multipart/form-data">
+                  <form id="forminsert" name="forminsert" class="forms-sample" action="../../core/updation.php" method="post" enctype="multipart/form-data">
+                    <input name="id" value="<?php echo($_GET['id']); ?>" style="display: none;" >
                     <div class="form-group">
                       <label for="exampleInputName1">Book Name</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Enter Book Name" autofocus>
+                      <input type="text" class="form-control" id="exampleInputName1" name="name"  value= "<?php echo($name[$_GET['id']-1]); ?>" placeholder="Enter Book Name"  autofocus >
                     </div>
                      <div class="form-group">
                       <label for="exampleInputName1">Book Author</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="author" placeholder="Book Author Name">
+                      <input type="text" class="form-control" id="exampleInputName1" name="author" value= "<?php echo($author[$_GET['id']-1]); ?>" placeholder="Book Author Name">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputName1">Description</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="description" placeholder="Description Of The Book" >
+                      <input type="text" class="form-control" id="exampleInputName1" name="description"  value= "<?php echo($description[$_GET['id']-1]); ?>" placeholder="Description Of The Book" >
                     </div>
                     <div class="form-group">
                       <label for="exampleInputName1">Type</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="type" placeholder="Type Or Tags Of The Book" >
+                      <input type="text" class="form-control" id="exampleInputName1" name="type"  value= "<?php echo($type[$_GET['id']-1]); ?>" placeholder="Type Or Tags Of The Book" >
                     </div>
 
                     <div class="form-group">
                       <label for="exampleSelectGender">Status</label>
+                      <?php
+                          $selected = $status[$_GET['id']-1];
+                          $rated = $rate[$_GET['id']-1];
+                      ?>
+
                         <select class="form-control" id="exampleSelectGender" name="status">
-                          <option value="0">unread</option>
-                          <option value="1">readed</option>
-                          <option value="2">reading</option>
-                          <option value="3">wishlist</option>
+                          <option value="0" <?php if($selected == '0'){echo("selected");}?> >unread</option>
+                          <option value="1" <?php if($selected == '1'){echo("selected");}?> >readed</option>
+                          <option value="2" <?php if($selected == '2'){echo("selected");}?> >reading</option>
+                          <option value="3" <?php if($selected == '3'){echo("selected");}?> >wishlist</option>
                         </select>
                       </div>
 
                       <div class="form-group">
                       <label for="exampleSelectGender">Rating</label>
                         <select class="form-control" id="exampleSelectGender" name="rate">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
+                          <option <?php if($rated == '1'){echo("selected");}?> >1</option>
+                          <option <?php if($rated == '2'){echo("selected");}?> >2</option>
+                          <option <?php if($rated == '3'){echo("selected");}?> >3</option>
+                          <option <?php if($rated == '4'){echo("selected");}?> >4</option>
+                          <option <?php if($rated == '5'){echo("selected");}?> >5</option>
                         </select>
                       </div>
 
                     <div class="form-group">
                       <label for="exampleTextarea1">Reflection</label>
-                      <textarea class="form-control" id="exampleTextarea1" rows="15" name="idea"></textarea>
+                      <textarea class="form-control" id="exampleTextarea1" rows="15" name="idea" ><?php echo($review[$_GET['id']-1]); ?></textarea>
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputName1">Remarks</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="remarks" placeholder="Some Remarks Of This Book">
+                      <input type="text" class="form-control" id="exampleInputName1" name="remarks"  value= "<?php echo($remark[$_GET['id']-1]); ?>" placeholder="Some Remarks Of This Book">
                     </div>
 
 
@@ -228,10 +271,16 @@ if(isset($_SESSION['valid'])){
                 <div class="card-body">
 
                     <div class="form-group">
+
                       <label>Book Image Upload</label>
+                      <br>
+                      <div class="col-md-4">
+                      <img style="border-radius: 16px; border: 1px solid #888;" height="95%" width="95%" alt="Image Preview" src="../../images/BookImages/<?php echo($_SESSION['login_user']); echo('/'); echo($bookimage[$_GET['id']-1]); ?>">
+                      </div>
+
                       <input type="file" name="fileToUpload" id="fileToUpload" class="file-upload-default">
                       <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload New Image" >
                         <span class="input-group-append">
                           <button name="book_img" class="file-upload-browse btn btn-primary" type="button">Upload</button>
                         </span>
@@ -240,45 +289,45 @@ if(isset($_SESSION['valid'])){
 
                     <div class="form-group">
                       <label for="exampleInputName1">ISBN</label>
-                      <input type="number" class="form-control" id="exampleInputName1" name="isbn" placeholder="ISBN Code" value="0">
+                      <input type="number" class="form-control" id="exampleInputName1" name="isbn"  value= "<?php echo($isbn[$_GET['id']-1]); ?>" placeholder="ISBN Code" value="0">
                     </div>
 
                    
 
                     <div class="form-group">
                       <label for="exampleInputName1">Book Page</label>
-                      <input type="number" class="form-control" id="exampleInputName1" name="page" placeholder="Number Of Book Page Has" value="0">
+                      <input type="number" class="form-control" id="exampleInputName1" name="page" value= "<?php echo($page[$_GET['id']-1]); ?>" placeholder="Number Of Book Page Has" value="0">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputName1">Publisher</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="publisher" placeholder="Publisher Of This Book">
+                      <input type="text" class="form-control" id="exampleInputName1" name="publisher"  value= "<?php echo($publisher[$_GET['id']-1]); ?>" placeholder="Publisher Of This Book">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputName1">Publish Date</label>
-                      <input type="date" class="form-control" id="exampleInputName1" name="publish_date" placeholder="Publish Date Of This Book" value="1998-01-01">
+                      <input type="date" class="form-control" id="exampleInputName1" name="publish_date" placeholder="Publish Date Of This Book"  value= "<?php echo($publish_date[$_GET['id']-1]); ?>">
                     </div>
 
                      
                      <div class="form-group">
                       <label for="exampleInputName1">Bookmark</label>
-                      <input type="number" class="form-control" id="exampleInputName1" name="bookmarks" placeholder="Bookmark for your lastest page" value="0">
+                      <input type="number" class="form-control" id="exampleInputName1" name="bookmarks" placeholder="Bookmark for your lastest page"  value= "<?php echo($bookmark[$_GET['id']-1]); ?>">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputName1">Reading Hour</label>
-                      <input type="number" class="form-control" id="exampleInputName1" name="read_time" placeholder="How long did you read the book " value="0">
+                      <input type="number" class="form-control" id="exampleInputName1" name="read_time" placeholder="How long did you read the book "  value= "<?php echo($readtime[$_GET['id']-1]); ?>">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputName1">Reading Page</label>
-                      <input type="number" class="form-control" id="exampleInputName1" name="read_page" placeholder="How Many Page Did You Read" value="0">
+                      <input type="number" class="form-control" id="exampleInputName1" name="read_page" placeholder="How Many Page Did You Read"  value= "<?php echo($readpage[$_GET['id']-1]); ?>">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputName1">Finish Date</label>
-                      <input type="date" class="form-control" id="exampleInputName1" name="finish_date" placeholder="When you finish reading this book" value="1998-01-01">
+                      <input type="date" class="form-control" id="exampleInputName1" name="finish_date" placeholder="When you finish reading this book"  value= "<?php echo($finishdate[$_GET['id']-1]); ?>">
                     </div>
 
 
@@ -289,7 +338,7 @@ if(isset($_SESSION['valid'])){
              <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                   <button  type="submit" class="btn btn-primary btn-lg btn-block">Insert Book</button>
+                   <button  type="submit" class="btn btn-primary btn-lg btn-block">Update Book Information</button>
                 </div>
               </div>
             </div>

@@ -221,7 +221,7 @@
 						           $description[$count-1] ."</td><td>" .
 						           $type[$count-1] . "</td><td>" .
 						           $status[$count-1] . "</td><td>" .
-						           '<a class="btn btn-default" href="../forms/bookinsert.php"><i class="mdi mdi-border-color menu-icon" style="color: #71c016;"></i></a>' .
+						           '<a class="btn btn-default" href="../forms/bookedit.php?id=' . $count . '"><i class="mdi mdi-border-color menu-icon" style="color: #71c016;"></i></a>' .
 						           "</td></tr>";
 						      $count++;
 						    }
