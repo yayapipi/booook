@@ -154,19 +154,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="../charts/analysis.php">
               <i class="mdi mdi-chart-pie menu-icon"></i>
               <span class="menu-title">Data Analysis</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="../forms/suggestion.php">
               <i class="mdi mdi-border-color menu-icon"></i>
               <span class="menu-title">Suggestion</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="credit.php">
               <i class="mdi mdi-information menu-icon"></i>
               <span class="menu-title">Credit</span>
             </a>
@@ -459,35 +459,6 @@ return "Hi";
         window.onclick = function(event) {
           if (event.target == modal) {
             modal.style.display = "none";
-          }
-        }
-        </script>
-
-        <script>
-
-        // Get the modal
-        var usermodal = document.getElementById('userModal');
-
-        // Get the button that opens the modal
-        var userbtn = document.getElementById("userBtn");
-
-        // Get the <span> element that closes the modal
-        var userspan = document.getElementsByClassName("userclose")[0];
-
-
-        userbtn.onclick = function() {
-          usermodal.style.display = "block";
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        userspan.onclick = function() {
-          usermodal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        userwindow.onclick = function(event) {
-          if (event.target == modal) {
-            usermodal.style.display = "none";
           }
         }
         </script>

@@ -114,19 +114,19 @@ if(isset($_SESSION['valid'])){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="../charts/analysis.php">
               <i class="mdi mdi-chart-pie menu-icon"></i>
               <span class="menu-title">Data Analysis</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="suggestion.php">
               <i class="mdi mdi-border-color menu-icon"></i>
               <span class="menu-title">Suggestion</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="../main/credit.php">
               <i class="mdi mdi-information menu-icon"></i>
               <span class="menu-title">Credit</span>
             </a>
