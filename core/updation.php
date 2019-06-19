@@ -241,7 +241,7 @@ if ($uploadOk ==1){
                 "readpage = '" . $_POST['read_page']. "'," .
                 "finishdate = '" . $_POST['finish_date'] . 
 
-   "WHERE id = " . $_POST['id'];
+   "' WHERE id = " . $_POST['id'];
  }
 
  

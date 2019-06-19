@@ -41,10 +41,15 @@
 
 
 		if(isset($_SESSION['login_user'])){
-
-		  $sql = "SELECT * FROM booklist_" .$_SESSION['login_user'];
+      if(isset($_GET['query'])){
+		  $sql = "SELECT * FROM booklist_" .$_SESSION['login_user']." WHERE isbn LIKE '%".$_GET['query']."%'" ." or name LIKE '%".$_GET['query']."%'"
+               ." or authors LIKE '%".$_GET['query']."%'" ." or description LIKE '%".$_GET['query']."%'" ." or publisher LIKE '%".$_GET['query']."%'"
+                ." or remark LIKE '%".$_GET['query']."%'" ." or review LIKE '%".$_GET['query']."%'" ." or type LIKE '%".$_GET['query']."%'";
+      }else{
+        $sql = "SELECT * FROM booklist_" .$_SESSION['login_user'];
+      }
 		  $result = $conn->query($sql);
-
+      
 		  if($result){
 		    if($result->num_rows >0){
 		      $i = 0;
@@ -103,9 +108,7 @@
                   <i class="mdi mdi-magnify"></i>
                 </span>
               </div>
-            <form id="formsearch" name="formsearch" action="/pages/main/search.php" method="get" enctype="multipart/form-data">
-              <input name="query" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </form>
+              <input onkeypress="he" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
             </div>
           </li>
         </ul>
@@ -121,7 +124,7 @@
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="/pages/main/settings.php">
+              <a class="dropdown-item" href="settings.php">
                 <i class="mdi mdi-settings text-primary"></i>
                 <div id="userBtn" >Settings</div>
               </a>
@@ -218,6 +221,7 @@
 						  $count = 1;
 						  if(isset($i)){
 						    while($count<=$i){
+
 						      echo "<tr class='clickable-row' data-href='".$count."' >  <td>".
 						           $count . "</td><td>" .
 						           $name[$count-1] . "</td><td>" .
@@ -482,18 +486,6 @@ return "Hi";
   <!-- endinject -->
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->
-
-<script>
-    function search_press(e){
-        if(e.keyCode === 13){
-            alert("Enter was just pressed.");
-        }
-
-        return false;
-    }
-</script>
-
-
 </body>
 
 </html>
