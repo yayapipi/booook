@@ -48,6 +48,7 @@ if(isset($_SESSION['login_user'])){
         if($result->num_rows >=0){
           $i = 0;
           while($row = $result->fetch_assoc()) {
+            $id[$i] = $row["id"];
             $isbn[$i] = $row["isbn"];
             $name[$i] = $row["name"];
             $author[$i] = $row["authors"];
@@ -203,7 +204,7 @@ if(isset($_SESSION['login_user'])){
                 <div class="card-body">
 
                   <form id="forminsert" name="forminsert" class="forms-sample" action="../../core/updation.php" method="post" enctype="multipart/form-data">
-                    <input name="id" value="<?php echo($_GET['id']); ?>" style="display: none;" >
+                    <input name="id" value="<?php echo($id[$_GET['id']-1]); ?>" style="display: none;" >
                     <div class="form-group">
                       <label for="exampleInputName1">Book Name</label>
                       <input type="text" class="form-control" id="exampleInputName1" name="name"  value= "<?php echo($name[$_GET['id']-1]); ?>" placeholder="Enter Book Name"  autofocus >
@@ -343,8 +344,18 @@ if(isset($_SESSION['login_user'])){
               </div>
             </div>
 
+
+
           </div>
         </form>
+
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                   <button  onclick="javascript:location.href='../../core/deletebook.php?id=<?php echo($id[$_GET['id']-1]); ?>'"  class="btn btn-danger btn-lg btn-block">Deleted This Book !</button>
+                </div>
+              </div>
+            </div>
 
 
 

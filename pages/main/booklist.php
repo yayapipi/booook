@@ -49,6 +49,7 @@
 		    if($result->num_rows >0){
 		      $i = 0;
 		      while($row = $result->fetch_assoc()) {
+		      	$id[$i] = $row["id"];
 		        $isbn[$i] = $row["isbn"];
 		        $name[$i] = $row["name"];
 		        $author[$i] = $row["authors"];
@@ -118,7 +119,7 @@
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="settings.php">
                 <i class="mdi mdi-settings text-primary"></i>
                 <div id="userBtn" >Settings</div>
               </a>
