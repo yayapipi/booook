@@ -152,6 +152,7 @@ echo '<b><p class="text-danger " >Image Upload Status :</p> ';
 if (!file_exists('../images/BookImages/'.$_SESSION['login_user'])) {
     mkdir('../images/BookImages/'.$_SESSION['login_user'], 0755, true);
 }
+
   $target_dir = '../images/BookImages/'.$_SESSION['login_user'].'/';
   $target_name = rand(1,1000) . '_' . basename($_FILES["fileToUpload"]["name"]) ;
   $target_file = $target_dir . $target_name ;
@@ -200,6 +201,7 @@ if (!file_exists('../images/BookImages/'.$_SESSION['login_user'])) {
   }
   
 
+if ($uploadOk ==1){
   $sql_update = "UPDATE booklist_".$_SESSION['login_user']." SET " .
                 "isbn = '" . $_POST['isbn']. "'," .
                 "name = '" . $_POST['name']. "'," .
@@ -220,6 +222,27 @@ if (!file_exists('../images/BookImages/'.$_SESSION['login_user'])) {
                 "bookimage = '" . $target_name. "'".
 
    "WHERE id = " . $_POST['id'];
+ }else{
+    $sql_update = "UPDATE booklist_".$_SESSION['login_user']." SET " .
+                "isbn = '" . $_POST['isbn']. "'," .
+                "name = '" . $_POST['name']. "'," .
+                "authors = '" . $_POST['author']. "'," .
+                "type = '" . $_POST['type']. "'," .
+                "page = '" . $_POST['page']. "'," .
+                "description = '" . $_POST['description']. "'," .
+                "publish_date = '" . $_POST['publish_date']. "'," .
+                "publisher = '" . $_POST['publisher']. "'," .
+                "remark = '" . $_POST['remarks']. "'," .
+                "review = '" . $_POST['idea']. "'," .
+                "status = '" . $_POST['status']. "'," .
+                "rate = '" . $_POST['rate']. "'," .
+                "bookmark = '" . $_POST['bookmarks']. "'," .
+                "readtime = '" . $_POST['read_time']. "'," .
+                "readpage = '" . $_POST['read_page']. "'," .
+                "finishdate = '" . $_POST['finish_date'] . 
+
+   "WHERE id = " . $_POST['id'];
+ }
 
  
   $conn->query($sql_update);
