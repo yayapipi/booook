@@ -149,6 +149,7 @@ if(isset($_SESSION['valid'])){
   //  echo '<button type="button" class="btn btn-inverse-success btn-fw">Success</button>';
 
 echo '<b><p class="text-danger " >Image Upload Status :</p> ';
+if($_FILES["fileToUpload"]["name"]!=null){
 if (!file_exists('../images/BookImages/'.$_SESSION['login_user'])) {
     mkdir('../images/BookImages/'.$_SESSION['login_user'], 0755, true);
 }
@@ -198,7 +199,11 @@ if (!file_exists('../images/BookImages/'.$_SESSION['login_user'])) {
           echo '<button type="button" class="btn btn-inverse-danger btn-fw">Sorry, there was an error uploading your file.</button><br>';
       }
   }
-  
+}else{
+  echo "No Image Uploaded";
+  $uploadOk  = 1;
+  $target_name = '../DefaultBook.jpeg';
+}
 
 
   $sql_insert = "INSERT INTO booklist_". $_SESSION['login_user'] ."(isbn,name,authors,type,page,description,publish_date,publisher,remark,review,status,rate,bookmark,readtime,readpage,finishdate,bookimage) 

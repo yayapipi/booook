@@ -29,6 +29,33 @@ if ($conn->connect_error) {
 } 
 
 session_start();
+    if(isset($_SESSION['valid'])){
+      if($_SESSION['valid'] == true)
+        echo $_SESSION['login_user'];
+
+
+    if(isset($_SESSION['login_user'])){
+
+      $sql = "SELECT * FROM userdata WHERE username='" .$_SESSION['login_user']."'";
+      $result = $conn->query($sql);
+
+      if($result){
+        if($result->num_rows >0){
+          $i = 0;
+          while($row = $result->fetch_assoc()) {
+            $db_password[$i] = $row["password"];
+            $i++;
+          }
+        }else{
+         $i =0;
+        }
+      }else{
+       $i=-1;
+      }
+    }
+
+    }
+
 ?>
    <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -148,20 +175,19 @@ if(isset($_SESSION['valid'])){
    // echo '<button type="button" class="btn btn-inverse-danger btn-fw">Sorry, there was an error uploading your file.</button>';
   //  echo '<button type="button" class="btn btn-inverse-success btn-fw">Success</button>';
 
-
-
-if($_FILES["fileToUpload"]["name"]!=null){
 echo '<b><p class="text-danger " >Image Upload Status :</p> ';
-if (!file_exists('../images/BookImages/'.$_SESSION['login_user'])) {
-    mkdir('../images/BookImages/'.$_SESSION['login_user'], 0755, true);
+if($_FILES["fileToUpload"]["name"]!=null){
+
+if (!file_exists('../images/UserImages/'.$_SESSION['login_user'])) {
+    mkdir('../images/UserImages/'.$_SESSION['login_user'], 0755, true);
 }
 
-  $imageFileType = strtolower(pathinfo(basename($_FILES["fileToUpload"]["name"]),PATHINFO_EXTENSION));
-  $target_dir = '../images/BookImages/'.$_SESSION['login_user'].'/';
-  $target_name = $_POST['id'] . '_' . $_POST['name'] . '.' . $imageFileType; //rand(1,1000) . '_' . basename($_FILES["fileToUpload"]["name"]) ;
+
+  $target_dir = '../images/UserImages/'.$_SESSION['login_user'].'/';
+  $target_name = 'Profile.png'; //.strtolower(pathinfo(basename($_FILES["fileToUpload"]["name"]),PATHINFO_EXTENSION)); 
   $target_file = $target_dir . $target_name ;
   $uploadOk = 1;
-
+  $imageFileType = strtolower(pathinfo(basename($_FILES["fileToUpload"]["name"]),PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
   if(isset($_POST["submit"])) {
      $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -204,59 +230,68 @@ if (!file_exists('../images/BookImages/'.$_SESSION['login_user'])) {
       }
   }
 }else{
+  echo "Nothing Changed";
+  echo "<br>";
   $uploadOk =0;
 }
+
+  if($_POST['email']!=null){
+    $emailOK = 1;
+    echo '<button type="button" class="btn btn-inverse-success btn-fw">Changed Email Successfully</button><br>';
+  }else{
+    $emailOK = 0;
+  }
   
+  if($_POST['o_password']!=null && $_POST['n_password']!=null && $_POST['n2_password']!=null){
+    if($_POST['o_password'] == $db_password[0]){
+      if($_POST['n_password'] == $_POST['n2_password']){
+        $passwordOK = 1;
+        echo "<br>";
+        echo '<button type="button" class="btn btn-inverse-success btn-fw">Changed Password Successfully</button><br>';
+      }else{
+        echo "<br>";
+        echo '<button type="button" class="btn btn-inverse-danger btn-fw">New Password Did Not Match </button><br>';
+        $passwordOK = 0;
+      }
+    }else{
+        echo "<br>";
+        echo '<button type="button" class="btn btn-inverse-danger btn-fw">Original Password Wrong </button><br>';
+      $passwordOK = 0;
+    }
+
+
+  }else{
+    $passwordOK = 0;
+  }
+
+$sql_update = "UPDATE userdata SET ";
 
 if ($uploadOk ==1){
-  $sql_update = "UPDATE booklist_".$_SESSION['login_user']." SET " .
-                "isbn = '" . $_POST['isbn']. "'," .
-                "name = '" . $_POST['name']. "'," .
-                "authors = '" . $_POST['author']. "'," .
-                "type = '" . $_POST['type']. "'," .
-                "page = '" . $_POST['page']. "'," .
-                "description = '" . $_POST['description']. "'," .
-                "publish_date = '" . $_POST['publish_date']. "'," .
-                "publisher = '" . $_POST['publisher']. "'," .
-                "remark = '" . $_POST['remarks']. "'," .
-                "review = '" . $_POST['idea']. "'," .
-                "status = '" . $_POST['status']. "'," .
-                "rate = '" . $_POST['rate']. "'," .
-                "bookmark = '" . $_POST['bookmarks']. "'," .
-                "readtime = '" . $_POST['read_time']. "'," .
-                "readpage = '" . $_POST['read_page']. "'," .
-                "finishdate = '" . $_POST['finish_date']. "'," .
-                "bookimage = '" . $target_name. "'".
-
-   "WHERE id = " . $_POST['id'];
- }else{
-    $sql_update = "UPDATE booklist_".$_SESSION['login_user']." SET " .
-                "isbn = '" . $_POST['isbn']. "'," .
-                "name = '" . $_POST['name']. "'," .
-                "authors = '" . $_POST['author']. "'," .
-                "type = '" . $_POST['type']. "'," .
-                "page = '" . $_POST['page']. "'," .
-                "description = '" . $_POST['description']. "'," .
-                "publish_date = '" . $_POST['publish_date']. "'," .
-                "publisher = '" . $_POST['publisher']. "'," .
-                "remark = '" . $_POST['remarks']. "'," .
-                "review = '" . $_POST['idea']. "'," .
-                "status = '" . $_POST['status']. "'," .
-                "rate = '" . $_POST['rate']. "'," .
-                "bookmark = '" . $_POST['bookmarks']. "'," .
-                "readtime = '" . $_POST['read_time']. "'," .
-                "readpage = '" . $_POST['read_page']. "'," .
-                "finishdate = '" . $_POST['finish_date'] . 
-
-   "' WHERE id = " . $_POST['id'];
+  $sql_update .= "img_url = '" . $target_name ."'" ; 
  }
 
- 
-  $conn->query($sql_update);
-  echo '<br ><b><p class="text-success " >Book Information Status :</p> ';
-  echo '<button type="button" class="btn btn-inverse-success btn-fw">Success Updated Book</button>';
-  echo "<hr>";
+if ($emailOK ==1){
+  if($uploadOk == 1){
+    $sql_update .= ",";
+  }
+  $sql_update .= "email = '" . $_POST['email'] ."'"; 
+ }
 
+if ($passwordOK ==1){
+  if($uploadOk == 1 || $emailOK ==1){
+    $sql_update .= ",";
+  }
+  $sql_update .= "password = '" . $_POST['n_password'] ."'"; 
+ }
+ 
+
+if($uploadOk == 1 || $emailOK ==1 || $passwordOK ==1){
+  $sql_update .= " WHERE username = '"  .$_SESSION['login_user'] ."'"; 
+  $conn->query($sql_update);
+}
+
+  echo "<hr>";
+  echo '<a href="../pages/main/settings.php" ><button type="button" class="btn btn-primary btn-rounded btn-fw">Settings Page</button></a><br><br>';
   echo '<a href="../pages/main/booklist.php" ><button type="button" class="btn btn-secondary btn-rounded btn-fw">Booklist Page</button></a><br><br>';
 
 } 

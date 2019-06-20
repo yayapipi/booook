@@ -185,9 +185,11 @@
                   
                   <p class="card-description">
                   </p>
-
+            
+            <form  action="/core/user_updation.php" method="post" enctype="multipart/form-data">
+                  
                       <div style="text-align: center;">
-                        <img src="../../images/faces/face5.jpg" alt="profile"/>
+                        <img src="../../images/UserImages/<?php echo($_SESSION['login_user']); ?>/Profile.png" alt="profile" width="72px" height="72px" />
                         <h5 style="padding-top: 10px;"><?php
                                 echo $_SESSION['login_user'];
                              ?>
@@ -197,7 +199,7 @@
                         <br>
                       <input type="file" name="fileToUpload" id="fileToUpload" class="file-upload-default">
                       <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload User Image">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload User Image with 72*72 px">
                         <span class="input-group-append">
                           <button name="book_img" class="file-upload-browse btn btn-primary" type="button">Upload</button>
                         </span>
@@ -236,6 +238,7 @@
                    <button  type="submit" class="btn btn-primary btn-lg btn-block">Update Information</button>
                 </div>
               </div>
+            </form>
 
               <div class="card">
                 <div class="card-body">
