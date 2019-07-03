@@ -79,6 +79,90 @@
     }
   ?>
 
+<!-- Analysis Variable Declaration -->
+  <?php
+    $total_book = $i;
+    echo $total_book;
+
+  ?>
+
+
+  <?php
+
+    //Get Current Year Month Readed Book Data Count
+    if(isset($_SESSION['login_user'])){
+
+      $sql = "SELECT EXTRACT(MONTH FROM finishdate) as month ,COUNT(*) as num FROM booklist_" .$_SESSION['login_user'] . " WHERE EXTRACT(YEAR FROM finishdate) = YEAR(CURRENT_TIMESTAMP) GROUP BY EXTRACT(MONTH FROM finishdate)";
+      $result = $conn->query($sql);
+
+      if($result){
+        if($result->num_rows >0){
+          $i = 0;
+          while($row = $result->fetch_assoc()) {
+            $month_raw[$i] = $row["month"];
+            $count[$i] = $row["num"];
+            $i++;
+          }
+        }else{
+         $i =0;
+        }
+      }else{
+       $i=-1;
+      }
+
+        for($k=0;$k<12;$k++){
+          $month_data[$k] =0;
+        }
+
+        for($k=0;$k<$i;$k++){
+          $month_data[$month_raw[$k]-1] = $count[$k];
+        }
+
+    }
+  ?>
+
+    <?php
+
+    //Get Current Year -5 total readed book count
+    if(isset($_SESSION['login_user'])){
+
+      $sql = "SELECT EXTRACT(YEAR FROM finishdate) as year ,COUNT(*) as num FROM booklist_" .$_SESSION['login_user'] . " GROUP BY EXTRACT(YEAR FROM finishdate)";
+
+      $result = $conn->query($sql);
+
+      if($result){
+        if($result->num_rows >0){
+          $year_count = 0;
+          while($row = $result->fetch_assoc()) {
+            $year_raw[$year_count] = $row["year"];
+            $count_year[$year_count] = $row["num"];
+            $year_count++;
+          }
+        }else{
+         $year_count =0;
+        }
+      }else{
+       $year_count=-1;
+      }
+
+        $current_year =  date("Y");
+
+        for($k=0;$k<5;$k++){
+          $year_data[$k] = $current_year-4+$k;
+          $year_value[$k] =0;
+        }
+
+        for($k=0;$k<$year_count;$k++){
+          for($k2=0;$k2<5;$k2++){
+            if($year_raw[$k]==$year_data[$k2]){
+                  $year_value[$k2] =  $count_year[$k];
+            }
+           }
+        }
+
+    }
+  ?>
+
 
 
   <div class="container-scroller">
@@ -173,16 +257,34 @@
           </li>
         </ul>
       </nav>
-      
-    
+
+
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body" style="text-align: center;">
+                  <h4 class="card-title">Analysis</h4>
+                  Total Read Book : 
+                    <?php
+
+                       echo $total_book;
+                                                  //echo ($finishdate[7]->format('Y-m-d'));
+
+                    ?>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Line chart</h4>
+                  <h4 class="card-title">Current Year Month Reading Frequency</h4>
                   <canvas id="lineChart"></canvas>
                 </div>
               </div>
@@ -190,7 +292,7 @@
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Bar chart</h4>
+                  <h4 class="card-title">Year Reading Frequency</h4>
                   <canvas id="barChart"></canvas>
                 </div>
               </div>
@@ -200,16 +302,16 @@
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Area chart</h4>
-                  <canvas id="areaChart"></canvas>
+                  <h4 class="card-title">Book Status</h4>
+                  <canvas id="doughnutChart"></canvas>
                 </div>
               </div>
             </div>
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Doughnut chart</h4>
-                  <canvas id="doughnutChart"></canvas>
+                  <h4 class="card-title">Book Rating</h4>
+                  <canvas id="pieChart"></canvas>
                 </div>
               </div>
             </div>
@@ -218,16 +320,74 @@
             <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Pie chart</h4>
-                  <canvas id="pieChart"></canvas>
+                  <h4 class="card-title">Top 10 Authors</h4>
+                   <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>
+                            #
+                          </th>
+                          <th>
+                            Book Type
+                          </th>
+
+                          <th>
+                            Number
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            1
+                          </td>
+                          <td>
+                            Herman Beck
+                          </td>
+                          <td>
+                            $ 77.99
+                          </td>
+
+                        </tr>
+                      </tbody>
+                    </table>
                 </div>
               </div>
             </div>
             <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Scatter chart</h4>
-                  <canvas id="scatterChart"></canvas>
+                  <h4 class="card-title">Top 10 Book Types</h4>
+                   <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>
+                            #
+                          </th>
+                          <th>
+                            Author Name
+                          </th>
+
+                          <th>
+                            Number
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            1
+                          </td>
+                          <td>
+                            Herman Beck
+                          </td>
+                          <td>
+                            $ 77.99
+                          </td>
+
+                        </tr>
+                      </tbody>
+                    </table>
                 </div>
               </div>
             </div>
@@ -238,9 +398,43 @@
         
         
 
+        <?php
+          $color = $month_data[5];
+        ?>
         
         
-        
+
+<script type="text/javascript">
+
+    var month_data_0 = "<?= $month_data[0] ?>";
+    var month_data_1 = "<?= $month_data[1] ?>";
+    var month_data_2 = "<?= $month_data[2] ?>";
+    var month_data_3 = "<?= $month_data[3] ?>";
+    var month_data_4 = "<?= $month_data[4] ?>";
+    var month_data_5 = "<?= $month_data[5] ?>";
+    var month_data_6 = "<?= $month_data[6] ?>";
+    var month_data_7 = "<?= $month_data[7] ?>";
+    var month_data_8 = "<?= $month_data[8] ?>";
+    var month_data_9 = "<?= $month_data[9] ?>";
+    var month_data_10 = "<?= $month_data[10] ?>";
+    var month_data_11 = "<?= $month_data[11] ?>";
+
+    var year_data_0 = "<?= $year_data[0] ?>";
+    var year_data_1 = "<?= $year_data[1] ?>";
+    var year_data_2 = "<?= $year_data[2] ?>";
+    var year_data_3 = "<?= $year_data[3] ?>";
+    var year_data_4 = "<?= $year_data[4] ?>";
+
+    var year_value_0 = "<?= $year_value[0] ?>";
+    var year_value_1 = "<?= $year_value[1] ?>";
+    var year_value_2 = "<?= $year_value[2] ?>";
+    var year_value_3 = "<?= $year_value[3] ?>";
+    var year_value_4 = "<?= $year_value[4] ?>";
+
+
+
+  var color= "<?= $color ?>";</script>
+
         <!-- partial -->
       </div>
       <!-- main-panel ends -->

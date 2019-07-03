@@ -3,13 +3,21 @@ $(function() {
    * -------
    * Data and config for chartjs
    */
+
   'use strict';
   var data = {
-    labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
+    labels: ["1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12"],
     datasets: [{
-      label: '# of Votes',
-      data: [10, 19, 3, 5, 2, 3],
+      label: 'Number of Books',
+      data: [month_data_0,  month_data_1,  month_data_2,  month_data_3,  month_data_4,  month_data_5, month_data_6,
+               month_data_7,  month_data_8,  month_data_9,  month_data_10,  month_data_11],
       backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
         'rgba(255, 206, 86, 0.2)',
@@ -23,12 +31,57 @@ $(function() {
         'rgba(255, 206, 86, 1)',
         'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
       ],
       borderWidth: 1,
       fill: false
     }]
   };
+  var data2 = {
+    labels: [year_data_0, year_data_1, year_data_2, year_data_3, year_data_4],
+    datasets: [{
+      label: 'Number of Books',
+      data: [year_value_0,year_value_1,year_value_2,year_value_3,year_value_4],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1,
+      fill: false
+    }]
+  };
+
+
   var multiLineData = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [{
@@ -273,7 +326,7 @@ $(function() {
     // This will get the first returned node in the jQuery collection.
     var barChart = new Chart(barChartCanvas, {
       type: 'bar',
-      data: data,
+      data: data2,
       options: options
     });
   }
