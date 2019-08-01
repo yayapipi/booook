@@ -213,6 +213,8 @@
 
             <div class="collapse" id="ui-basic">
               <ul style="text-align: center;">
+                <li><h6>Server Online</h6></li>
+                <li><h6>Add Analysis Page</h6></li>
                 <li><h6>Add Suggestion Page</h6></li>
                 <li><h6>Add Credit Page</h6></li>
                 <li><h6>Core Program Of Booook Is Done</h6></li>
