@@ -119,7 +119,7 @@
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="/pages/main/settings.php" >
+              <a class="dropdown-item" href="/booook/pages/main/settings.php" >
                 <i class="mdi mdi-settings text-primary"></i>
                 <div id="userBtn" >Settings</div>
               </a>
