@@ -21,10 +21,10 @@
 <body>
 
   <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "booook";
+$servername = "yayapipi.com";
+$username = "yayapipi_root";
+$password = "yayapipib0000k";
+$dbname = "yayapipi_booook";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
