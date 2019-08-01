@@ -186,7 +186,7 @@
                   <p class="card-description">
                   </p>
             
-            <form  action="/core/user_updation.php" method="post" enctype="multipart/form-data">
+            <form  action="../../core/user_updation.php" method="post" enctype="multipart/form-data">
                   
                       <div style="text-align: center;">
                         <img src="../../images/UserImages/<?php echo($_SESSION['login_user']); ?>/Profile.png" alt="profile" width="72px" height="72px" />

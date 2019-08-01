@@ -98,7 +98,9 @@ if(isset($_SESSION['login_user'])){
                   <i class="mdi mdi-magnify"></i>
                 </span>
               </div>
-              <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+              <form id="formsearch" name="formsearch" action="../main/search.php" method="get" enctype="multipart/form-data">
+              <input name="query" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </form>
             </div>
           </li>
         </ul>
@@ -114,7 +116,7 @@ if(isset($_SESSION['login_user'])){
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="/pages/main/settings.php" >
+              <a class="dropdown-item" href="../main/settings.php" >
                 <i class="mdi mdi-settings text-primary"></i>
                 <div id="userBtn" >Settings</div>
               </a>
