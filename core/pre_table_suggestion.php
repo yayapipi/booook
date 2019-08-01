@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 } 
 
 // sql to create table
-$sql = "CREATE TABLE Suggestion (
+$sql = "CREATE TABLE suggestion (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 name VARCHAR(255) NOT NULL,
 email VARCHAR(255) ,

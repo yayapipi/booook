@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 } 
 
 // sql to create table
-$sql = "CREATE TABLE UserData (
+$sql = "CREATE TABLE userdata (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 username VARCHAR(255) NOT NULL,
 password VARCHAR(3255) NOT NULL,

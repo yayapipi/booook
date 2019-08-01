@@ -64,7 +64,7 @@ if($username_valid ==1){
            .")";
   $conn->query($sql1);
 
-  $sql_createTable = "CREATE TABLE Booklist_".$_POST['username'].
+  $sql_createTable = "CREATE TABLE booklist_".$_POST['username'].
                       "(id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                         isbn INT(100),
                         name VARCHAR(255) NOT NULL,
