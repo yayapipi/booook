@@ -78,7 +78,9 @@ session_start();
                   <i class="mdi mdi-magnify"></i>
                 </span>
               </div>
-              <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+              <form id="formsearch" name="formsearch" action="/pages/main/search.php" method="get" enctype="multipart/form-data">
+              <input name="query" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </form>
             </div>
           </li>
         </ul>
@@ -86,7 +88,7 @@ session_start();
           
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../images/faces/face5.jpg" alt="profile"/>
+              <img src="../../images/UserImages/<?php echo($_SESSION['login_user']); ?>/Profile.png" alt="profile"/>
               <span class="nav-profile-name">
                 <?php
                 echo $_SESSION['login_user'];
@@ -243,7 +245,8 @@ if (!file_exists('../images/UserImages/'.$_SESSION['login_user'])) {
   }
   
   if($_POST['o_password']!=null && $_POST['n_password']!=null && $_POST['n2_password']!=null){
-    if($_POST['o_password'] == $db_password[0]){
+     $o_hashed = hash('sha512',$_POST['o_password']);
+    if($o_hashed == $db_password[0]){
       if($_POST['n_password'] == $_POST['n2_password']){
         $passwordOK = 1;
         echo "<br>";
@@ -281,7 +284,8 @@ if ($passwordOK ==1){
   if($uploadOk == 1 || $emailOK ==1){
     $sql_update .= ",";
   }
-  $sql_update .= "password = '" . $_POST['n_password'] ."'"; 
+  $n_hashed = hash('sha512',$_POST['n_password']);
+  $sql_update .= "password = '" . $n_hashed ."'"; 
  }
  
 

@@ -47,8 +47,9 @@ session_start();
       
       $myusername = mysqli_real_escape_string($conn,$_POST['username']);
       $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
+      $hashed = hash('sha512',$mypassword);
       
-      $sql = "SELECT id FROM userdata WHERE username = '$myusername' and password = '$mypassword'";
+      $sql = "SELECT id FROM userdata WHERE username = '$myusername' and password = '$hashed'";
       $result = mysqli_query($conn,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       
@@ -79,10 +80,10 @@ session_start();
               <h4 style="text-align: center;">Log In</h4>
               <form class="pt-3" action="login.php" method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username" name="username">
+                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username" name="username" required>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="password">
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="password" required>
                 </div>
                 <div class="mt-3">
                   <input type="submit" value="SIGN IN" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">

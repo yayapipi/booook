@@ -55,8 +55,26 @@
 		}
 
 		}
+
+
+
 if(isset($_GET['book_uid'])){
 	$uid = $_GET['book_uid']-1;
+	
+	//Pre-process Book-status
+		$status_word;
+		if($status[$uid]==0){
+			$status_word = "Unread";
+		}else if($status[$uid]==1){
+			$status_word = "Read";
+		}else if($status[$uid]==2){
+			$status_word = "Reading";
+		}else if($status[$uid]==3){
+			$status_word = "Wishlist";
+		}
+
+
+	//Result Generate
 	echo $isbn[$uid] . ',' .
 		 $name[$uid] . ',' .
 		 $author[$uid] . ',' .
@@ -67,7 +85,7 @@ if(isset($_GET['book_uid'])){
 		 $publisher[$uid] . ',' .
 		 $remark[$uid] . ',' .
 		 $review[$uid] . ',' .
-		 $status[$uid] . ',' .
+		 $status_word . ',' .
 		 $rate[$uid] . ',' .
 		 $bookmark[$uid] . ',' .
 		 $readtime[$uid] . ',' .

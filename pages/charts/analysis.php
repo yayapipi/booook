@@ -164,6 +164,139 @@
   ?>
 
 
+    <?php
+
+    //Get Book Status
+    if(isset($_SESSION['login_user'])){
+
+      $sql = "SELECT COUNT(status) as num ,status FROM booklist_" .$_SESSION['login_user'] . " GROUP BY status";
+
+      $result = $conn->query($sql);
+
+      if($result){
+        if($result->num_rows >0){
+          $status_count = 0;
+          while($row = $result->fetch_assoc()) {
+            $status_type[$status_count] = $row["status"];
+            $status_num[$status_count] = $row["num"];
+            $status_count++;
+          }
+        }else{
+         $status_count =0;
+        }
+      }else{
+       $status_count=-1;
+      }
+
+
+        for($k=0;$k<4;$k++){
+          $status_data[$k] =0;
+        }
+
+        for($k=0;$k<$status_count;$k++){
+          $status_data[$status_type[$k]] = $status_num[$k];
+        }
+
+    }
+  ?>
+
+  <?php
+
+    //Get Book Rating
+    if(isset($_SESSION['login_user'])){
+
+      $sql = "SELECT COUNT(rate) as num ,rate FROM booklist_" .$_SESSION['login_user'] . " GROUP BY rate ";
+
+      $result = $conn->query($sql);
+
+      if($result){
+        if($result->num_rows >0){
+          $rate_count = 0;
+          while($row = $result->fetch_assoc()) {
+            $rate_type[$rate_count] = $row["rate"];
+            $rate_num[$rate_count] = $row["num"];
+            $rate_count++;
+          }
+        }else{
+         $rate_count =0;
+        }
+      }else{
+       $rate_count=-1;
+      }
+
+
+        for($k=0;$k<5;$k++){
+          $rate_data[$k] =0;
+        }
+
+        for($k=0;$k<$rate_count;$k++){
+          $rate_data[$rate_type[$k]-1] = $rate_num[$k];
+        }
+
+    }
+  ?>
+
+    <?php
+
+    //Get Book Authors
+    if(isset($_SESSION['login_user'])){
+
+      $sql = " SELECT AUTHORS , COUNT(authors) as num FROM booklist_" .$_SESSION['login_user'] . " WHERE authors!='' GROUP BY authors ORDER BY num DESC";
+
+      $result = $conn->query($sql);
+
+      if($result){
+        if($result->num_rows >0){
+          $authors_count = 0;
+          while($row = $result->fetch_assoc()) {
+            $authors_name[$authors_count] = $row["AUTHORS"];
+            $author_num[$authors_count] = $row["num"];
+            $authors_count++;
+          }
+        }else{
+         $authors_count =0;
+        }
+      }else{
+       $authors_count=-1;
+      }
+
+
+
+    }
+  ?>
+
+  <?php
+
+    //Get Book Types
+
+    if(isset($_SESSION['login_user'])){
+
+      $sql = " SELECT type,count(type) as num FROM booklist_" .$_SESSION['login_user'] . " where type != '' GROUP BY type ORDER BY num DESC";
+
+      $result = $conn->query($sql);
+
+      if($result){
+        if($result->num_rows >0){
+          $type_count = 0;
+          while($row = $result->fetch_assoc()) {
+            $type_name[$type_count] = $row["type"];
+            $type_num[$type_count] = $row["num"];
+            $type_count++;
+          }
+        }else{
+         $type_count =0;
+        }
+      }else{
+       $type_count=-1;
+      }
+
+
+
+    }
+  ?>
+
+
+
 
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -186,7 +319,9 @@
                   <i class="mdi mdi-magnify"></i>
                 </span>
               </div>
-              <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+              <form id="formsearch" name="formsearch" action="/pages/main/search.php" method="get" enctype="multipart/form-data">
+              <input name="query" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </form>
             </div>
           </li>
         </ul>
@@ -194,7 +329,7 @@
           
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../images/faces/face5.jpg" alt="profile"/>
+              <img src="../../images/UserImages/<?php echo($_SESSION['login_user']); ?>/Profile.png" alt="profile"/>
               <span class="nav-profile-name">
                 <?php
                 echo $_SESSION['login_user'];
@@ -202,9 +337,9 @@
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="/pages/main/settings.php">
                 <i class="mdi mdi-settings text-primary"></i>
-                <div id="userBtn" >Settings</div>
+                Settings
               </a>
               <a class="dropdown-item" href="../../core/logout.php">
                 <i class="mdi mdi-logout text-primary"></i>
@@ -271,8 +406,6 @@
                     <?php
 
                        echo $total_book;
-                                                  //echo ($finishdate[7]->format('Y-m-d'));
-
                     ?>
 
                 </div>
@@ -328,7 +461,7 @@
                             #
                           </th>
                           <th>
-                            Book Type
+                            Author Name
                           </th>
 
                           <th>
@@ -337,18 +470,32 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            Herman Beck
-                          </td>
-                          <td>
-                            $ 77.99
-                          </td>
+                        <?php
+                          if($authors_count<10){
+                            for($a=0;$a<$authors_count;$a++){
+                               echo "<tr><td>";
+                               echo $a+1;
+                               echo "</td><td>";
+                               echo $authors_name[$a];
+                               echo "</td><td>";
+                               echo $author_num[$a];
+                               echo "</td></tr>";
 
-                        </tr>
+                            }
+                          }else{
+                            for($a=0;$a<10;$a++){
+                               echo "<tr><td>";
+                               echo $a+1;
+                               echo "</td><td>";
+                               echo $authors_name[$a];
+                               echo "</td><td>";
+                               echo $author_num[$a];
+                               echo "</td></tr>";
+
+                            }
+                          }
+
+                        ?>
                       </tbody>
                     </table>
                 </div>
@@ -365,7 +512,7 @@
                             #
                           </th>
                           <th>
-                            Author Name
+                            Book Type
                           </th>
 
                           <th>
@@ -374,18 +521,34 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            Herman Beck
-                          </td>
-                          <td>
-                            $ 77.99
-                          </td>
+                        <?php
+                          if($type_count<10){
+                            for($a=0;$a<$type_count;$a++){
+                               echo "<tr><td>";
+                               echo $a+1;
+                               echo "</td><td>";
+                               echo $type_name[$a];
+                               echo "</td><td>";
+                               echo $type_num[$a];
+                               echo "</td></tr>";
 
-                        </tr>
+                            }
+                          }else{
+                            for($a=0;$a<10;$a++){
+                               echo "<tr><td>";
+                               echo $a+1;
+                               echo "</td><td>";
+                               echo $type_name[$a];
+                               echo "</td><td>";
+                               echo $type_num[$a];
+                               echo "</td></tr>";
+
+                            }
+                          }
+
+                        ?>
+
+                      
                       </tbody>
                     </table>
                 </div>
@@ -430,6 +593,17 @@
     var year_value_2 = "<?= $year_value[2] ?>";
     var year_value_3 = "<?= $year_value[3] ?>";
     var year_value_4 = "<?= $year_value[4] ?>";
+
+    var rate0 = "<?= $rate_data[0] ?>";
+    var rate1 = "<?= $rate_data[1] ?>";
+    var rate2 = "<?= $rate_data[2] ?>";
+    var rate3 = "<?= $rate_data[3] ?>";
+    var rate4 = "<?= $rate_data[4] ?>";
+
+    var status_data_0 = "<?= $status_data[0] ?>";
+    var status_data_1 = "<?= $status_data[1] ?>";
+    var status_data_2 = "<?= $status_data[2] ?>";
+    var status_data_3 = "<?= $status_data[3] ?>";
 
 
 

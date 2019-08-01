@@ -218,12 +218,24 @@
 						  $count = 1;
 						  if(isset($i)){
 						    while($count<=$i){
+                  //Pre-process Book Status
+                    $status_word;
+                    if($status[$count-1]==0){
+                      $status_word = "Unread";
+                    }else if($status[$count-1]==1){
+                      $status_word = "Read";
+                    }else if($status[$count-1]==2){
+                      $status_word = "Reading";
+                    }else if($status[$count-1]==3){
+                      $status_word = "Wishlist";
+                    }
+                  //Generate Result
 						      echo "<tr class='clickable-row' data-href='".$count."' >  <td>".
 						           $count . "</td><td>" .
 						           $name[$count-1] . "</td><td>" .
 						           $description[$count-1] ."</td><td>" .
 						           $type[$count-1] . "</td><td>" .
-						           $status[$count-1] . "</td><td>" .
+						           $status_word . "</td><td>" .
 						           '<a class="btn btn-default" href="../forms/bookedit.php?id=' . $count . '"><i class="mdi mdi-border-color menu-icon" style="color: #71c016;"></i></a>' .
 						           "</td></tr>";
 						      $count++;
@@ -430,12 +442,44 @@ return "Hi";
                           $("#book_remark").html(result[8]);
                           $("#book_review").html(result[9]);
                           $("#book_status").html(result[10]);
-                          $("#book_rate").html(result[11]);
                           $("#book_bookmark").html(result[12]);
                           $("#book_readtime").html(result[13]);
                           $("#book_readpage").html(result[14]);
                           $("#book_finishdate").html(result[15]);
                           $("#book_image").attr('src',"../../images/BookImages/"+result[17]+"/"+result[16]);
+                          //Book Ranking System
+                          if(result[11]==1){
+                            $("#book_rate1").css('display','inline');
+                            $("#book_rate2").css('display','none');
+                            $("#book_rate3").css('display','none');
+                            $("#book_rate4").css('display','none');
+                            $("#book_rate5").css('display','none');
+                          }else if(result[11]==2){
+                            $("#book_rate1").css('display','inline');
+                            $("#book_rate2").css('display','inline');
+                            $("#book_rate3").css('display','none');
+                            $("#book_rate4").css('display','none');
+                            $("#book_rate5").css('display','none');
+                          }else if(result[11]==3){
+                            $("#book_rate1").css('display','inline');
+                            $("#book_rate2").css('display','inline');
+                            $("#book_rate3").css('display','inline');
+                            $("#book_rate4").css('display','none');
+                            $("#book_rate5").css('display','none');
+                          }else if(result[11]==4){
+                            $("#book_rate1").css('display','inline');
+                            $("#book_rate2").css('display','inline');
+                            $("#book_rate3").css('display','inline');
+                            $("#book_rate4").css('display','inline');
+                            $("#book_rate5").css('display','none');
+                          }else if(result[11]==5){
+                            $("#book_rate1").css('display','inline');
+                            $("#book_rate2").css('display','inline');
+                            $("#book_rate3").css('display','inline');
+                            $("#book_rate4").css('display','inline');
+                            $("#book_rate5").css('display','inline');
+                          }
+
                         }
 
                   });

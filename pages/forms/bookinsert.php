@@ -72,7 +72,7 @@ if(isset($_SESSION['valid'])){
           
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../images/faces/face5.jpg" alt="profile"/>
+              <img src="../../images/UserImages/<?php echo($_SESSION['login_user']); ?>/Profile.png" alt="profile"/>
               <span class="nav-profile-name">
                 <?php
                 echo $_SESSION['login_user'];
@@ -138,15 +138,17 @@ if(isset($_SESSION['valid'])){
 
       <!-- partial -->
       <div class="main-panel">        
-        <div class="content-wrapper">
+        <div class="content-wrapper"> 
           <div class="row">
 
+            <!--
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">BOOK INFORMATION DATA</h4>
                   <p class="card-description">
                   </p>
+
 
                   <div class="form-group">
                     <div class="input-group">
@@ -160,17 +162,18 @@ if(isset($_SESSION['valid'])){
                 </div>
               </div>
             </div>
+          -->
 
-            
-            
+
+
             <div class="col-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
 
                   <form id="forminsert" name="forminsert" class="forms-sample" action="../../core/insetion.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                      <label for="exampleInputName1">Book Name</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Enter Book Name" autofocus>
+                      <label for="exampleInputName1">Book Name</label> <label style="color:red;">*</label>
+                      <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Enter Book Name" autofocus required>
                     </div>
                      <div class="form-group">
                       <label for="exampleInputName1">Book Author</label>
@@ -188,8 +191,8 @@ if(isset($_SESSION['valid'])){
                     <div class="form-group">
                       <label for="exampleSelectGender">Status</label>
                         <select class="form-control" id="exampleSelectGender" name="status">
-                          <option value="0">unread</option>
                           <option value="1">readed</option>
+                          <option value="0">unread</option>
                           <option value="2">reading</option>
                           <option value="3">wishlist</option>
                         </select>
@@ -202,7 +205,7 @@ if(isset($_SESSION['valid'])){
                           <option>2</option>
                           <option>3</option>
                           <option>4</option>
-                          <option>5</option>
+                          <option selected>5</option>
                         </select>
                       </div>
 
@@ -259,7 +262,7 @@ if(isset($_SESSION['valid'])){
 
                     <div class="form-group">
                       <label for="exampleInputName1">Publish Date</label>
-                      <input type="date" class="form-control" id="exampleInputName1" name="publish_date" placeholder="Publish Date Of This Book" value="1998-01-01">
+                      <input type="date" class="form-control" id="exampleInputName1" name="publish_date" placeholder="Publish Date Of This Book" value="2000-01-01">
                     </div>
 
                      
@@ -280,7 +283,7 @@ if(isset($_SESSION['valid'])){
 
                     <div class="form-group">
                       <label for="exampleInputName1">Finish Date</label>
-                      <input type="date" class="form-control" id="exampleInputName1" name="finish_date" placeholder="When you finish reading this book" value="1998-01-01">
+                      <input type="date" class="form-control" id="exampleInputName1" name="finish_date" placeholder="When you finish reading this book" value="<?php echo date("Y-m-d"); ?>">
                     </div>
 
 

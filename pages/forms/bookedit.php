@@ -108,7 +108,7 @@ if(isset($_SESSION['login_user'])){
           
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../images/faces/face5.jpg" alt="profile"/>
+              <img src="../../images/UserImages/<?php echo($_SESSION['login_user']); ?>/Profile.png" alt="profile"/>
               <span class="nav-profile-name">
                 <?php
                 echo $_SESSION['login_user'];
@@ -116,9 +116,9 @@ if(isset($_SESSION['login_user'])){
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="/pages/main/settings.php" >
                 <i class="mdi mdi-settings text-primary"></i>
-                Settings
+                <div id="userBtn" >Settings</div>
               </a>
               <a class="dropdown-item" href="../../core/logout.php">
                 <i class="mdi mdi-logout text-primary"></i>
@@ -152,19 +152,19 @@ if(isset($_SESSION['login_user'])){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="../charts/analysis.php">
               <i class="mdi mdi-chart-pie menu-icon"></i>
               <span class="menu-title">Data Analysis</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="suggestion.php">
               <i class="mdi mdi-border-color menu-icon"></i>
               <span class="menu-title">Suggestion</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="../main/credit.php">
               <i class="mdi mdi-information menu-icon"></i>
               <span class="menu-title">Credit</span>
             </a>

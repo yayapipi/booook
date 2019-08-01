@@ -102,7 +102,9 @@
                   <i class="mdi mdi-magnify"></i>
                 </span>
               </div>
-              <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+              <form id="formsearch" name="formsearch" action="/pages/main/search.php" method="get" enctype="multipart/form-data">
+              <input name="query" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </form>
             </div>
           </li>
         </ul>
@@ -110,7 +112,7 @@
           
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../images/faces/face5.jpg" alt="profile"/>
+              <img src="../../images/UserImages/<?php echo($_SESSION['login_user']); ?>/Profile.png" alt="profile"/>
               <span class="nav-profile-name">
                 <?php
                 echo $_SESSION['login_user'];
@@ -118,7 +120,7 @@
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="/pages/main/settings.php" >
                 <i class="mdi mdi-settings text-primary"></i>
                 <div id="userBtn" >Settings</div>
               </a>

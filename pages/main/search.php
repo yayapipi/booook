@@ -108,7 +108,9 @@
                   <i class="mdi mdi-magnify"></i>
                 </span>
               </div>
-              <input onkeypress="he" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+              <form id="formsearch" name="formsearch" action="/pages/main/search.php" method="get" enctype="multipart/form-data">
+              <input name="query" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </form>
             </div>
           </li>
         </ul>
@@ -116,7 +118,7 @@
           
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../images/faces/face5.jpg" alt="profile"/>
+              <img src="../../images/UserImages/<?php echo($_SESSION['login_user']); ?>/Profile.png" alt="profile"/>
               <span class="nav-profile-name">
                 <?php
                 echo $_SESSION['login_user'];
@@ -124,9 +126,9 @@
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="settings.php">
+              <a class="dropdown-item" href="/pages/main/settings.php">
                 <i class="mdi mdi-settings text-primary"></i>
-                <div id="userBtn" >Settings</div>
+                Settings
               </a>
               <a class="dropdown-item" href="../../core/logout.php">
                 <i class="mdi mdi-logout text-primary"></i>
@@ -221,13 +223,24 @@
 						  $count = 1;
 						  if(isset($i)){
 						    while($count<=$i){
-
+                  //Pre-process Book Status
+                    $status_word;
+                    if($status[$count-1]==0){
+                      $status_word = "Unread";
+                    }else if($status[$count-1]==1){
+                      $status_word = "Read";
+                    }else if($status[$count-1]==2){
+                      $status_word = "Reading";
+                    }else if($status[$count-1]==3){
+                      $status_word = "Wishlist";
+                    }
+                  //Generate Result
 						      echo "<tr class='clickable-row' data-href='".$count."' >  <td>".
 						           $count . "</td><td>" .
 						           $name[$count-1] . "</td><td>" .
 						           $description[$count-1] ."</td><td>" .
 						           $type[$count-1] . "</td><td>" .
-						           $status[$count-1] . "</td><td>" .
+						           $status_word . "</td><td>" .
 						           '<a class="btn btn-default" href="../forms/bookedit.php?id=' . $count . '"><i class="mdi mdi-border-color menu-icon" style="color: #71c016;"></i></a>' .
 						           "</td></tr>";
 						      $count++;
@@ -440,6 +453,39 @@ return "Hi";
                           $("#book_readpage").html(result[14]);
                           $("#book_finishdate").html(result[15]);
                           $("#book_image").attr('src',"../../images/BookImages/"+result[17]+"/"+result[16]);
+                          //Book Ranking System
+                          if(result[11]==1){
+                            $("#book_rate1").css('display','inline');
+                            $("#book_rate2").css('display','none');
+                            $("#book_rate3").css('display','none');
+                            $("#book_rate4").css('display','none');
+                            $("#book_rate5").css('display','none');
+                          }else if(result[11]==2){
+                            $("#book_rate1").css('display','inline');
+                            $("#book_rate2").css('display','inline');
+                            $("#book_rate3").css('display','none');
+                            $("#book_rate4").css('display','none');
+                            $("#book_rate5").css('display','none');
+                          }else if(result[11]==3){
+                            $("#book_rate1").css('display','inline');
+                            $("#book_rate2").css('display','inline');
+                            $("#book_rate3").css('display','inline');
+                            $("#book_rate4").css('display','none');
+                            $("#book_rate5").css('display','none');
+                          }else if(result[11]==4){
+                            $("#book_rate1").css('display','inline');
+                            $("#book_rate2").css('display','inline');
+                            $("#book_rate3").css('display','inline');
+                            $("#book_rate4").css('display','inline');
+                            $("#book_rate5").css('display','none');
+                          }else if(result[11]==5){
+                            $("#book_rate1").css('display','inline');
+                            $("#book_rate2").css('display','inline');
+                            $("#book_rate3").css('display','inline');
+                            $("#book_rate4").css('display','inline');
+                            $("#book_rate5").css('display','inline');
+                          }
+
                         }
 
                   });

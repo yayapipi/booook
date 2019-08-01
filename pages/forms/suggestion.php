@@ -62,7 +62,9 @@ if(isset($_SESSION['valid'])){
                   <i class="mdi mdi-magnify"></i>
                 </span>
               </div>
-              <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+              <form id="formsearch" name="formsearch" action="/pages/main/search.php" method="get" enctype="multipart/form-data">
+              <input name="query" type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </form>
             </div>
           </li>
         </ul>
@@ -70,7 +72,7 @@ if(isset($_SESSION['valid'])){
           
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../images/faces/face5.jpg" alt="profile"/>
+              <img src="../../images/UserImages/<?php echo($_SESSION['login_user']); ?>/Profile.png" alt="profile"/>
               <span class="nav-profile-name">
                 <?php
                 echo $_SESSION['login_user'];
@@ -78,7 +80,7 @@ if(isset($_SESSION['valid'])){
               </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="/pages/main/settings.php">
                 <i class="mdi mdi-settings text-primary"></i>
                 Settings
               </a>
@@ -149,7 +151,7 @@ if(isset($_SESSION['valid'])){
                  <form id="forminsert" name="forminsert" class="forms-sample" action="../../core/insetion_suggestion.php" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                       <label for="exampleInputName1"><b>Name:</label>
-                      <input name="name" type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                      <input name="name" type="text" class="form-control" id="exampleInputName1" placeholder="Name" required>
                   </div>
 
                   <div class="form-group">
