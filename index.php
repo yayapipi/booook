@@ -16,9 +16,10 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
+  <link rel="manifest" href="manifest.json"/>
 </head>
 
-<body>
+<body  onload="onloadFunc()">>
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth">
@@ -52,6 +53,34 @@
   <script src="js/hoverable-collapse.js"></script>
   <script src="js/template.js"></script>
   <!-- endinject -->
+<script>
+function onloadFunc() {
+  if('serviceWorker' in navigator){
+     navigator.serviceWorker
+           .register('service-worker.js')
+           .then(function(){
+               console.log('Service Worker 註冊成功');
+           }).catch(function(error) {
+               console.log('Service worker 註冊失敗:', error);
+           });
+  } else {
+     avalon.log('瀏覽器不支援 serviceWorker');
+  }
+
+  window.addEventListener('beforeinstallprompt', function(e) {
+       e.userChoice.then(function(choiceResult) {
+           if(choiceResult.outcome == 'dismissed') {
+              console.log('user取消安裝至桌面');
+           }
+           else {
+              console.log('user接受安裝至桌面');
+           }
+       });
+  });
+}
+</script>
+
+
 </body>
 
 </html>
