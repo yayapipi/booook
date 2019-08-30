@@ -201,6 +201,23 @@
               </div>
             </div>
           -->
+          <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+
+                  <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                  <span class="menu-title"> <h5 style="text-align: center;">  Change Log  Version 1.1.0 </h5></span>
+                  </a>
+
+            <div class="collapse" id="ui-basic">
+              <ul style="text-align: center;">
+                <li><h6>Add Progressive Web App For Phone</h6></li>
+              </ul>
+            </div>
+
+                </div>
+              </div>
+            </div>
 
 
             <div class="col-lg-12 grid-margin stretch-card">

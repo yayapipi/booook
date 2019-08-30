@@ -19,7 +19,7 @@
   <link rel="manifest" href="manifest.json"/>
 </head>
 
-<body  onload="onloadFunc()">>
+<body  onload="onloadFunc()">
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth">
