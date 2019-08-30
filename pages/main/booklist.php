@@ -9,7 +9,7 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
-  <link rel="stylesheet" href="../../css/popup.css"
+  <link rel="stylesheet" href="../../css/popup.css">
   <!-- endinject -->
   <!-- inject:css -->
   <link rel="stylesheet" href="../../css/style.css">
@@ -86,7 +86,7 @@
             <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
           <a class="navbar-brand brand-logo" href="#"><img src="../../images/logo.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../images/logo-mini.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="#"><img src="../../images/favicon.png" alt="logo"/></a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-sort-variant"></span>
           </button>
@@ -94,11 +94,11 @@
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <ul class="navbar-nav mr-lg-4 w-100">
-          <li class="nav-item nav-search d-none d-lg-block w-100">
+          <li class="nav-item nav-search d-lg-block w-100">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="search">
-                  <i class="mdi mdi-magnify"></i>
+                  <i class="mdi mdi-magnify search-icon"></i>
                 </span>
               </div>
             <form id="formsearch" name="formsearch" action="search.php" method="get" enctype="multipart/form-data">
@@ -193,16 +193,16 @@
                           <th style="table-layout:fixed; width:25px;">
                             No.
                           </th>
-                          <th style="table-layout:fixed; width:200px;">
+                          <th nowrap="nowrap" style="table-layout:fixed; width:150px;">
                             Book Name
                           </th>
-                          <th >
+                          <th class="list-table-data-description">
                             Description
                           </th>
-                          <th style="table-layout:fixed; width:100px;">
+                          <th class="list-table-data-status-type">
                             Type
                           </th>
-                          <th style="table-layout:fixed; width:100px;">
+                          <th class="list-table-data-status-type">
                             Status
                           </th>
                           <th style="table-layout:fixed; width:25px;">
@@ -230,9 +230,9 @@
                   //Generate Result
 						      echo "<tr class='clickable-row' data-href='".$count."' >  <td>".
 						           $count . "</td><td>" .
-						           $name[$count-1] . "</td><td>" .
-						           $description[$count-1] ."</td><td>" .
-						           $type[$count-1] . "</td><td>" .
+						           $name[$count-1] . "</td><td class='list-table-data-description'>" .
+						           $description[$count-1] ."</td><td class='list-table-data-status-type'>" .
+						           $type[$count-1] . "</td><td class='list-table-data-status-type'>" .
 						           $status_word . "</td><td>" .
 						           '<a class="btn btn-default" href="../forms/bookedit.php?id=' . $count . '"><i class="mdi mdi-border-color menu-icon" style="color: #71c016;"></i></a>' .
 						           "</td></tr>";
@@ -479,7 +479,6 @@ return "Hi";
                           }
 
                         }
-
                   });
                  //window.location.reload();
                 //$.ajax({ url: 'booklist.php?argument=value&foo=bar' });
@@ -489,10 +488,9 @@ return "Hi";
 
 
 
-      
-
         btn.onclick = function() {
-          modal.style.display = "block";
+
+        //  modal.style.display = "block";
         }
 
         // When the user clicks on <span> (x), close the modal

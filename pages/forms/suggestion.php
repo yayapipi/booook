@@ -9,6 +9,7 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../css/popup.css">
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -45,7 +46,7 @@ if(isset($_SESSION['valid'])){
             <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
           <a class="navbar-brand brand-logo" href="#"><img src="../../images/logo.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../images/logo-mini.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="#"><img src="../../images/favicon.png" alt="logo"/></a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-sort-variant"></span>
           </button>
@@ -53,11 +54,11 @@ if(isset($_SESSION['valid'])){
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <ul class="navbar-nav mr-lg-4 w-100">
-          <li class="nav-item nav-search d-none d-lg-block w-100">
+          <li class="nav-item nav-search  d-lg-block w-100">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="search">
-                  <i class="mdi mdi-magnify"></i>
+                  <i class="mdi mdi-magnify search-icon"></i>
                 </span>
               </div>
               <form id="formsearch" name="formsearch" action="../main/search.php" method="get" enctype="multipart/form-data">

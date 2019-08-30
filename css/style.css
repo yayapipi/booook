@@ -9173,6 +9173,20 @@ pre code {
   }
 }
 
+
+.col-6-r {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+@media (max-width: 991px) {
+  .col-6-r {
+    flex: 0 0 100%;
+    max-width: 100%;
+	}
+}
+
+
 .container-fluid {
   width: 100%;
   padding-right: 10px;

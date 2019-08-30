@@ -14,6 +14,7 @@
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+
 /* Modal Content */
 .book-modal-content {
   position: relative;
@@ -29,6 +30,61 @@
   animation-name: animatetop;
   animation-duration: 0.4s
 }
+
+@media (max-width:1357px) {
+  .book-modal-content {
+    width: 65%;
+  }
+}
+
+@media (max-width: 991px) {
+  .book-modal-content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 843px) {
+  .book-modal-content {
+    width: 90%;
+  }
+}
+
+.list-table-data-status-type{
+  table-layout: fixed;
+  width: 100px;
+  display: visible;
+}
+
+.list-table-data-description{
+  table-layout: fixed;
+  width: 200px;
+  display: visible;
+}
+
+.search-icon{
+  display: visible;
+}
+
+@media (max-width: 775px) {
+  .list-table-data-description{
+  display: none;
+}
+}
+
+@media (max-width: 415px) {
+  .list-table-data-status-type{
+  display: none;
+}
+}
+
+@media (max-width: 991px) {
+  .search-icon{
+  display: none;
+}
+}
+
+
+
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
