@@ -36,7 +36,6 @@
     width: 65%;
   }
 }
-
 @media (max-width: 991px) {
   .book-modal-content {
     width: 80%;
