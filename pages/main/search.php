@@ -232,7 +232,7 @@
                       $status_word = "Wishlist";
                     }
                   //Generate Result
-						      echo "<tr class='clickable-row' data-href='".$count."' >  <td>".
+						      echo "<tr class='clickable-row' data-href='".$count."' data-query='".$_GET['query']."'>  <td>".
 						           $count . "</td><td>" .
 						           $name[$count-1] . "</td><td>" .
 						           $description[$count-1] ."</td><td>" .
@@ -420,15 +420,18 @@ return "Hi";
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
+        var query_get = "30";//<?php echo $_GET['query']; ?>;
+
+        // When the user clicks the button, open the modal  
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {
                  $.ajax(
                   {
 
                         type:'GET',
-                        url:'bookcatch.php',
-                        data:"book_uid="+$(this).data("href"), 
+                        url:'bookcatch_search.php',
+                        data:{book_uid:$(this).data("href"),
+                              query:$(this).data("query")},
                         success: function(data){
                           //alert(data);
                           var resultData = data;

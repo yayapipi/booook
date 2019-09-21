@@ -390,6 +390,7 @@ return "Hi";
         <p id="book_remark">
         No Remark Currently.
         </p>
+
       </div>
     </div>
   </div>
@@ -433,6 +434,7 @@ return "Hi";
                           $("#book_isbn").html(result[0]);
                           $("#book_name").html(result[1]);
                           $("#book_author").html(result[2]);
+                          $("#book_type").html(result[3]);
                           $("#book_page").html(result[4]);
                           $("#book_description").html(result[5]);
                           $("#book_publishdate").html(result[6]);

@@ -152,7 +152,7 @@ if(isset($_SESSION['valid'])){
                     <div class="input-group">
                       <input type="text" class="form-control" placeholder="Enter Book ISBN" aria-label="Recipient's username">
                       <div class="input-group-append">
-                        <button class="btn btn-sm btn-primary" type="button">Search</button>
+                        <button class="btn btn-sm btn-primary" id="search-btn" type="button">Search</button>
                       </div>
                     </div>
                   </div>
@@ -299,6 +299,146 @@ if(isset($_SESSION['valid'])){
 
           </div>
         </form>
+
+                  <!-- Book-Model-Box -->
+
+
+        <!-- The Modal -->
+        <div id="myModal" class="book-modal">
+
+          <!-- Modal content -->
+          <div class="book-modal-content">
+            <div class="modal-body">
+                  <span class="close">&times;</span>
+
+
+                     <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4">
+                <img id="book_image" style="border-radius: 16px; border: 1px solid #888;" height="95%" width="95%" alt="Bootstrap Image Preview" src="https://bci.kinokuniya.com/jsp/images/book-img/97895/97895713/9789571341712.JPG" class="rounded" />
+                
+              </div>
+              <div class="col-md-8">
+                <br>
+
+                <h3><b id='book_name'>No Book Title</b></h3>
+                <hr >
+                <div class="row">
+                 <div class="col-md-12">
+                  <p id='book_description'>There Are Not Book Descripsion Here ...
+                  </p>
+                 </div>
+                 </div>
+                 <hr >
+                <div class="row">
+                  <div class="col-md-6">
+                    <b>Isbn:</b> <b id='book_isbn'></b>
+                    <br /> <b>Type:</b> <b id='book_type'></b>
+                    <br /> <b>Page:</b> <b id='book_page'></b>
+                    <br /> <b>Publish Date:</b> <b id='book_publishdate'></b>
+                    <br /> <b>Publisher:</b> <b id='book_publisher'></b>
+                  </div>
+                  <div class="col-md-6">
+                    <b>Status:</b> <b id='book_status'></b>
+                    <br /> <b>Read Time:</b> <b id='book_readtime'></b>
+                    <br /> <b>Read Page:</b> <b id='book_readpage'></b>
+                    <br /> <b>Finish Date:</b> <b id='book_finishdate'></b>
+                    <br /> <b>Rating:</b> 
+                    <i id="book_rate1" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i id="book_rate2" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i id="book_rate3" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i id="book_rate4" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                    <i id="book_rate5" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-12">
+
+
+                <div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <b style="color: black;">Review</b>
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <p id="book_review">
+        No Review Currently.
+       </p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <b style="color: black;">Remark</b>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        <p id="book_remark">
+        No Remark Currently.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+              </div>
+            </div>
+          </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <script>
+
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("search-btn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+
+
+
+        btn.onclick = function() {
+
+          modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
+
+
 
 
 
