@@ -21922,3 +21922,8 @@ dl li {
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+
+.iframe-loading {
+  background:url(../../images/loader.gif) center center no-repeat;
+}

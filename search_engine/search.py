@@ -15,14 +15,14 @@ if r.status_code == requests.codes.ok:
   for s in stories:
     # 新聞標題
     print("標題：" + s.get('title'))
-    f.write("#Title：" + s.get('title'))
+    f.write("#Title:" + s.get('title')+"#End")
     # 新聞網址
     href_cut_start = 'item/'
     href_cut_end = '/page/'
     href = s.get('href')
     href = href[href.index(href_cut_start)+len(href_cut_start):href.index(href_cut_end)]
     print("網址：" + href)
-    f.write("#Url：" + href)
+    f.write("#Url:" + href+"#End")
 
 
   image = soup.find_all('img',class_='itemcov')
@@ -34,7 +34,7 @@ if r.status_code == requests.codes.ok:
     image_end_pos = i.get('data-original').index(image_cut_end)
     image = i.get('data-original')[image_start_pos+len(image_cut_start):image_end_pos]
     print("圖片：" + image)
-    f.write("#Image：" + image)
+    f.write("#Image:" + image+"#End")
 
 f.close()
 

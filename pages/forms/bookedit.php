@@ -178,6 +178,7 @@ if(isset($_SESSION['login_user'])){
         <div class="content-wrapper">
           <div class="row">
 
+<!--
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -197,7 +198,7 @@ if(isset($_SESSION['login_user'])){
                 </div>
               </div>
             </div>
-
+-->
             
             
             <div class="col-6-r grid-margin stretch-card">

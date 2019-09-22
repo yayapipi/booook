@@ -37,6 +37,62 @@ if(isset($_SESSION['valid'])){
     echo $_SESSION['login_user'];
 }
 
+  //Auto Fill Variable Detection
+  if(isset($_POST['title'])){
+    $title = $_POST['title'];
+  }else{
+    $title = "";
+  }
+
+  if(isset($_POST['isbn'])){
+    $isbn = $_POST['isbn'];
+  }else{
+    $isbn = "0";
+  }
+
+  if(isset($_POST['page'])){
+    $page = $_POST['page'];
+  }else{
+    $page = "";
+  }
+
+  if(isset($_POST['publisher'])){
+    $publisher = $_POST['publisher'];
+  }else{
+    $publisher = "";
+  }
+
+  if(isset($_POST['author'])){
+    $author = $_POST['author'];
+  }else{
+    $author = "";
+  }
+
+  if(isset($_POST['types'])){
+    $types = $_POST['types'];
+  }else{
+    $types = "";
+  }
+
+  if(isset($_POST['publish_date'])){
+    $publish_date = $_POST['publish_date'];
+  }else{
+    $publish_date = "2000-01-01";
+  }
+
+  if(isset($_POST['image'])){
+    $image = $_POST['image'];
+  }else{
+    $image = "";
+  }
+
+  if(isset($_POST['content'])){
+    $content = $_POST['content'];
+  }else{
+    $content = "";
+  }
+
+
 ?>
 
   <div class="container-scroller">
@@ -150,7 +206,7 @@ if(isset($_SESSION['valid'])){
 
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Enter Book ISBN" aria-label="Recipient's username">
+                      <input id="search-text" type="text" class="form-control" placeholder="Enter Book ISBN" aria-label="Recipient's username">
                       <div class="input-group-append">
                         <button class="btn btn-sm btn-primary" id="search-btn" type="button">Search</button>
                       </div>
@@ -171,19 +227,19 @@ if(isset($_SESSION['valid'])){
                   <form id="forminsert" name="forminsert" class="forms-sample" action="../../core/insetion.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                       <label for="exampleInputName1">Book Name</label> <label style="color:red;">*</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Enter Book Name" autofocus required>
+                      <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Enter Book Name" autofocus required value="<?php echo($title); ?>">
                     </div>
                      <div class="form-group">
                       <label for="exampleInputName1">Book Author</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="author" placeholder="Book Author Name">
+                      <input type="text" class="form-control" id="exampleInputName1" name="author" placeholder="Book Author Name" value="<?php echo($author); ?>">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputName1">Description</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="description" placeholder="Description Of The Book" >
+                      <input type="text" class="form-control" id="exampleInputName1" name="description" placeholder="Description Of The Book" value="<?php echo($content); ?>">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputName1">Type</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="type" placeholder="Type Or Tags Of The Book" >
+                      <input type="text" class="form-control" id="exampleInputName1" name="type" placeholder="Type Or Tags Of The Book" value="<?php echo($types); ?>">
                     </div>
 
                     <div class="form-group">
@@ -234,7 +290,7 @@ if(isset($_SESSION['valid'])){
                       <label>Book Image Upload</label>
                       <input type="file" name="fileToUpload" id="fileToUpload" class="file-upload-default">
                       <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" >
                         <span class="input-group-append">
                           <button name="book_img" class="file-upload-browse btn btn-primary" type="button">Upload</button>
                         </span>
@@ -243,7 +299,7 @@ if(isset($_SESSION['valid'])){
 
                     <div class="form-group">
                       <label for="exampleInputName1">ISBN</label>
-                      <input type="number" class="form-control" id="exampleInputName1" name="isbn" placeholder="ISBN Code" value="0">
+                      <input type="number" class="form-control" id="exampleInputName1" name="isbn" placeholder="ISBN Code" value="<?php echo($isbn); ?>">
                     </div>
 
                    
@@ -255,12 +311,12 @@ if(isset($_SESSION['valid'])){
 
                     <div class="form-group">
                       <label for="exampleInputName1">Publisher</label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="publisher" placeholder="Publisher Of This Book">
+                      <input type="text" class="form-control" id="exampleInputName1" name="publisher" placeholder="Publisher Of This Book" value="<?php echo($publisher); ?>">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputName1">Publish Date</label>
-                      <input type="date" class="form-control" id="exampleInputName1" name="publish_date" placeholder="Publish Date Of This Book" value="2000-01-01">
+                      <input type="date" class="form-control" id="exampleInputName1" name="publish_date" placeholder="Publish Date Of This Book" value="<?php echo date("Y-m-d"); ?>">
                     </div>
 
                      
@@ -311,96 +367,14 @@ if(isset($_SESSION['valid'])){
             <div class="modal-body">
                   <span class="close">&times;</span>
 
-
-                     <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-4">
-                <img id="book_image" style="border-radius: 16px; border: 1px solid #888;" height="95%" width="95%" alt="Bootstrap Image Preview" src="https://bci.kinokuniya.com/jsp/images/book-img/97895/97895713/9789571341712.JPG" class="rounded" />
-                
-              </div>
-              <div class="col-md-8">
-                <br>
-
-                <h3><b id='book_name'>No Book Title</b></h3>
-                <hr >
-                <div class="row">
-                 <div class="col-md-12">
-                  <p id='book_description'>There Are Not Book Descripsion Here ...
-                  </p>
-                 </div>
-                 </div>
-                 <hr >
-                <div class="row">
-                  <div class="col-md-6">
-                    <b>Isbn:</b> <b id='book_isbn'></b>
-                    <br /> <b>Type:</b> <b id='book_type'></b>
-                    <br /> <b>Page:</b> <b id='book_page'></b>
-                    <br /> <b>Publish Date:</b> <b id='book_publishdate'></b>
-                    <br /> <b>Publisher:</b> <b id='book_publisher'></b>
+                  <div class="iframe-loading">
+                  <iframe  src="" frameborder="0" width="100%"
+                    onload="resizeIframe(this)" height="650px" id="search-frame"></iframe>
                   </div>
-                  <div class="col-md-6">
-                    <b>Status:</b> <b id='book_status'></b>
-                    <br /> <b>Read Time:</b> <b id='book_readtime'></b>
-                    <br /> <b>Read Page:</b> <b id='book_readpage'></b>
-                    <br /> <b>Finish Date:</b> <b id='book_finishdate'></b>
-                    <br /> <b>Rating:</b> 
-                    <i id="book_rate1" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
-                    <i id="book_rate2" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
-                    <i id="book_rate3" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
-                    <i id="book_rate4" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
-                    <i id="book_rate5" class="mdi mdi-star" style="color: #cedb1e; display:inline;"></i>
-                  </div>
-                </div>
-                <hr>
-              </div>
+
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-md-12">
 
 
-                <div id="accordion">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <b style="color: black;">Review</b>
-        </button>
-      </h5>
-    </div>
-
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-        <p id="book_review">
-        No Review Currently.
-       </p>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          <b style="color: black;">Remark</b>
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-      <div class="card-body">
-        <p id="book_remark">
-        No Remark Currently.
-        </p>
-
-      </div>
-    </div>
-  </div>
-
-</div>
-
-              </div>
-            </div>
-          </div>
-            </div>
 
           </div>
 
@@ -414,6 +388,12 @@ if(isset($_SESSION['valid'])){
         // Get the button that opens the modal
         var btn = document.getElementById("search-btn");
 
+         // Get the iframe id
+        var sframe = document.getElementById("search-frame");
+
+        // Get the search text info
+        var stxt = document.getElementById("search-text");
+
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
@@ -421,7 +401,8 @@ if(isset($_SESSION['valid'])){
 
 
         btn.onclick = function() {
-
+          var url = "../../search_engine/search_engine.php?search='" +stxt.value+"'";
+          sframe.contentWindow.document.location.href=url;
           modal.style.display = "block";
         }
 

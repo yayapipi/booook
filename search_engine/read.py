@@ -1,5 +1,6 @@
 import requests
 import sys 
+import codecs
 from bs4 import BeautifulSoup
 
 r = requests.get('https://www.books.com.tw/products/'+sys.argv[1])
@@ -14,8 +15,9 @@ image = soup.find(attrs={"property":"og:image"})['content']
 #print(image)
 
 content = soup.find("div", class_='content')
-content = content.text[:40]
-#print(content)
+content = content.text[:100]
+content = content.strip();
+content = content.split('\n');
 
 
 #String Process
@@ -73,6 +75,28 @@ image_end_pos = image.index(image_cut_end)
 image = image[image_start_pos+len(image_cut_start):image_end_pos]
 
 #Display Content
+f = codecs.open('read-result.txt','w+',"utf-8")
+f.write(name)
+f.write("#")
+f.write(isbn)
+f.write("#")
+f.write(page)
+f.write("#")
+f.write(publisher)
+f.write("#")
+f.write(author)
+f.write("#")
+f.write(types)
+f.write("#")
+f.write(publish_date)
+f.write("#")
+f.write(image)
+f.write("#")
+f.write(content[0])
+f.write("#")
+
+f.close();
+
 print(name)
 print(isbn)
 print(page)
@@ -81,4 +105,4 @@ print(author)
 print(types)
 print(publish_date)
 print(image)
-print(content)
+print(content[0])
