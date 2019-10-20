@@ -4,6 +4,9 @@ execfile(activate_this, dict(__file__=activate_this))
 
 import requests
 import sys 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import codecs
 from bs4 import BeautifulSoup
 
