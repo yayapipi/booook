@@ -1,6 +1,6 @@
 activate_this = "/home/yayapipi/project/bin/activate_this.py"
 execfile(activate_this, dict(__file__=activate_this))
-
+# -*- coding: UTF-8 -*-
 import requests
 import sys 
 import codecs
