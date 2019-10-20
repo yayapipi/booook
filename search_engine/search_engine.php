@@ -74,7 +74,7 @@
 			fclose($myfile);
 
 			$command_deactivate = "deactivate";
-			exec($command_deactivate,$ret_da,$data_da);
+			exec($command_deactivate,$ret_de,$data_de);
 
 		}
 		
