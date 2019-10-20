@@ -11,13 +11,11 @@ if r.status_code == requests.codes.ok:
 
   stories = soup.find_all('a',rel='mid_image')
   for s in stories:
-    print("標題：" + s.get('title'))
     f.write("#Title:" + s.get('title')+"#End")
     href_cut_start = 'item/'
     href_cut_end = '/page/'
     href = s.get('href')
     href = href[href.index(href_cut_start)+len(href_cut_start):href.index(href_cut_end)]
-    print("網址：" + href)
     f.write("#Url:" + href+"#End")
 
 
@@ -28,7 +26,6 @@ if r.status_code == requests.codes.ok:
     image_start_pos = i.get('data-original').index(image_cut_start)
     image_end_pos = i.get('data-original').index(image_cut_end)
     image = i.get('data-original')[image_start_pos+len(image_cut_start):image_end_pos]
-    print("圖片：" + image)
     f.write("#Image:" + image+"#End")
 
 f.close()
