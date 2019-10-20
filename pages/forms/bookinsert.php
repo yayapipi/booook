@@ -417,6 +417,7 @@ if(isset($_SESSION['valid'])){
             modal.style.display = "none";
           }
         }
+        
         </script>
 
 
