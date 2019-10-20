@@ -20,6 +20,9 @@
 <body>
 		 <?php
 		if(isset($_GET['search'])){
+			$command_activate = "source ~/project/bin/activate";
+			exec($command_activate,$ret_ac,$data_ac);
+
 			$command = "python search.py ".$_GET['search'];
 			exec($command,$ret,$data);
 			$myfile = fopen("search-result.txt", "r") or die("Unable to open file!");
@@ -69,6 +72,9 @@
 			}
 
 			fclose($myfile);
+
+			$command_deactivate = "deactivate";
+			exec($command_deactivate,$ret_da,$data_da);
 
 		}
 		
