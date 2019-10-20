@@ -1,6 +1,7 @@
+# -*- coding: UTF-8 -*-
 activate_this = "/home/yayapipi/project/bin/activate_this.py"
 execfile(activate_this, dict(__file__=activate_this))
-# -*- coding: UTF-8 -*-
+
 import requests
 import sys 
 import codecs
@@ -8,7 +9,6 @@ from bs4 import BeautifulSoup
 
 r = requests.get('https://www.books.com.tw/products/'+sys.argv[1])
 if r.status_code == requests.codes.ok:
-  # 以 BeautifulSoup 解析 HTML 程式碼
   soup = BeautifulSoup(r.text, 'html.parser')
 
 description = soup.find(attrs={"name":"description"})['content']
